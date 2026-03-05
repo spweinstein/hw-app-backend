@@ -1,0 +1,234 @@
+[
+  {
+    "model": "main_app.musclegroup",
+    "pk": 1,
+    "fields": {
+      "name": "Chest",
+      "description": "Pectoral muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 2,
+    "fields": {
+      "name": "Back",
+      "description": "Lats, traps, and spinal erectors."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 3,
+    "fields": {
+      "name": "Shoulders",
+      "description": "Deltoids."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 4,
+    "fields": {
+      "name": "Biceps",
+      "description": "Elbow flexors."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 5,
+    "fields": {
+      "name": "Triceps",
+      "description": "Elbow extensors."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 6,
+    "fields": {
+      "name": "Quads",
+      "description": "Quadriceps femoris."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 7,
+    "fields": {
+      "name": "Hamstrings",
+      "description": "Posterior thigh muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 8,
+    "fields": {
+      "name": "Glutes",
+      "description": "Gluteal muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 9,
+    "fields": {
+      "name": "Calves",
+      "description": "Lower leg muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 10,
+    "fields": {
+      "name": "Core",
+      "description": "Abdominals and stabilizers."
+    }
+  },
+    {
+    "model": "main_app.musclegroup",
+    "pk": 11,
+    "fields": {
+      "name": "Upper Chest",
+      "description": "Clavicular head of the pectoralis major."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 12,
+    "fields": {
+      "name": "Lower Chest",
+      "description": "Sternal head of the pectoralis major."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 13,
+    "fields": {
+      "name": "Lats",
+      "description": "Latissimus dorsi muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 14,
+    "fields": {
+      "name": "Traps",
+      "description": "Trapezius muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 15,
+    "fields": {
+      "name": "Rear Delts",
+      "description": "Posterior deltoid muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 16,
+    "fields": {
+      "name": "Front Delts",
+      "description": "Anterior deltoid muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 17,
+    "fields": {
+      "name": "Side Delts",
+      "description": "Lateral deltoid muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 18,
+    "fields": {
+      "name": "Forearms",
+      "description": "Wrist flexors and extensors."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 19,
+    "fields": {
+      "name": "Hip Flexors",
+      "description": "Iliopsoas and supporting hip flexor muscles."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 20,
+    "fields": {
+      "name": "Obliques",
+      "description": "Internal and external abdominal obliques."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 21,
+    "fields": {
+      "name": "Lower Back",
+      "description": "Erector spinae and lumbar stabilizers."
+    }
+  },
+   {
+    "model": "main_app.musclegroup",
+    "pk": 22,
+    "fields": {
+      "name": "Biceps Brachii (Long Head)",
+      "description": "Outer portion of the biceps responsible for the peak shape and shoulder involvement."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 23,
+    "fields": {
+      "name": "Biceps Brachii (Short Head)",
+      "description": "Inner portion of the biceps contributing to arm thickness and elbow flexion."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 24,
+    "fields": {
+      "name": "Brachialis",
+      "description": "Muscle underneath the biceps that assists in elbow flexion and adds arm width."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 25,
+    "fields": {
+      "name": "Brachioradialis",
+      "description": "Forearm muscle that assists with elbow flexion, especially in neutral grip movements."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 26,
+    "fields": {
+      "name": "Triceps (Long Head)",
+      "description": "Largest tricep head that crosses the shoulder joint and contributes most to overall arm size."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 27,
+    "fields": {
+      "name": "Triceps (Lateral Head)",
+      "description": "Outer portion of the triceps responsible for the horseshoe appearance."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 28,
+    "fields": {
+      "name": "Triceps (Medial Head)",
+      "description": "Deep tricep head that assists in elbow extension and stabilizes pressing movements."
+    }
+  },
+  {
+    "model": "main_app.musclegroup",
+    "pk": 29,
+    "fields": {
+      "name": "Mid Back",
+      "description": "The mid-back muscles stabilize the thoracic spine and retract the shoulder blades."
+  }
+}
+]

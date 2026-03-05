@@ -1,0 +1,998 @@
+[
+  {
+    "model": "main_app.exercise",
+    "pk": 1,
+    "fields": {
+      "name": "Barbell Bench Press",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Lower bar to mid chest and press to full lockout.",
+      "video_url": "",
+      "muscle_groups": [1, 5, 26, 27]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 2,
+    "fields": {
+      "name": "Incline Bench Press",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Press bar upward on incline bench targeting upper chest.",
+      "video_url": "",
+      "muscle_groups": [5, 11, 26]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 3,
+    "fields": {
+      "name": "Decline Bench Press",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Press bar from lower chest angle on decline bench.",
+      "video_url": "",
+      "muscle_groups": [3, 5, 12, 16]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 4,
+    "fields": {
+      "name": "Close-Grip Bench Press",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Use narrow grip to emphasize triceps during press.",
+      "video_url": "",
+      "muscle_groups": [5, 23, 26, 27, 28]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 5,
+    "fields": {
+      "name": "Dumbbell Bench Press",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Press dumbbells from chest with full range of motion.",
+      "video_url": "",
+      "muscle_groups": [1, 5, 16, 26]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 6,
+    "fields": {
+      "name": "Incline Dumbbell Press",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Press dumbbells upward on incline bench.",
+      "video_url": "",
+      "muscle_groups": [5, 11, 26]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 7,
+    "fields": {
+      "name": "Decline Dumbbell Press",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Press dumbbells on decline bench targeting lower chest.",
+      "video_url": "",
+      "muscle_groups": [5, 12, 16]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 8,
+    "fields": {
+      "name": "Dumbbell Flyes",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Lower dumbbells wide with slight elbow bend and squeeze chest at top.",
+      "video_url": "",
+      "muscle_groups": [1]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 9,
+    "fields": {
+      "name": "Incline Flyes",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Perform fly movement on incline bench.",
+      "video_url": "",
+      "muscle_groups": [11]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 10,
+    "fields": {
+      "name": "Chest Press Machine",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Press machine handles forward until arms are extended.",
+      "video_url": "",
+      "muscle_groups": [1, 5, 16]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 11,
+    "fields": {
+      "name": "Plate-Loaded Chest Press",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Press weight forward in controlled motion.",
+      "video_url": "",
+      "muscle_groups": [1, 5, 16]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 12,
+    "fields": {
+      "name": "Pec Deck",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Bring arms together in hugging motion squeezing chest.",
+      "video_url": "",
+      "muscle_groups": [1]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 13,
+    "fields": {
+      "name": "Cable Chest Press",
+      "exercise_type": "strength",
+      "equipment": "cable",
+      "instructions": "Press cable handles forward with control.",
+      "video_url": "",
+      "muscle_groups": [1, 5]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 14,
+    "fields": {
+      "name": "Cable Fly",
+      "exercise_type": "strength",
+      "equipment": "cable",
+      "instructions": "Bring cable handles together in arc motion.",
+      "video_url": "",
+      "muscle_groups": [1]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 15,
+    "fields": {
+      "name": "Push-ups",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Lower body to floor and press back up maintaining straight body line.",
+      "video_url": "",
+      "muscle_groups": [1, 5, 10, 16, 26]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 16,
+    "fields": {
+      "name": "Dips (Chest-Focused)",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Lean forward while dipping to emphasize chest.",
+      "video_url": "",
+      "muscle_groups": [1, 5, 16]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 17,
+    "fields": {
+      "name": "Pull-ups",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Pull body upward until chin clears bar.",
+      "video_url": "",
+      "muscle_groups": [2, 4, 10, 13, 15, 21, 29]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 18,
+    "fields": {
+      "name": "Chin-ups",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Underhand grip pull-up focusing on biceps.",
+      "video_url": "",
+      "muscle_groups": [2, 4, 10, 13, 29]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 19,
+    "fields": {
+      "name": "Lat Pulldown",
+      "exercise_type": "strength",
+      "equipment": "cable",
+      "instructions": "Pull bar to upper chest while squeezing lats.",
+      "video_url": "",
+      "muscle_groups": [2, 13]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 20,
+    "fields": {
+      "name": "Barbell Row",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Row bar toward lower chest with flat back.",
+      "video_url": "",
+      "muscle_groups": [2, 13, 14, 15]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 21,
+    "fields": {
+      "name": "Dumbbell Row",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Row dumbbell toward hip while stabilizing torso.",
+      "video_url": "",
+      "muscle_groups": [2, 13, 14]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 22,
+    "fields": {
+      "name": "Seated Cable Row",
+      "exercise_type": "strength",
+      "equipment": "cable",
+      "instructions": "Pull handle toward torso squeezing shoulder blades.",
+      "video_url": "",
+      "muscle_groups": [2, 13, 14, 29]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 23,
+    "fields": {
+      "name": "T-Bar Row",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Row bar toward chest keeping back neutral.",
+      "video_url": "",
+      "muscle_groups": [2, 13, 14, 15]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 24,
+    "fields": {
+      "name": "Chest-Supported Row",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Row handles toward torso while chest stays supported.",
+      "video_url": "",
+      "muscle_groups": [2, 13, 14, 15]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 25,
+    "fields": {
+      "name": "Deadlift",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Lift bar from floor by extending hips and knees.",
+      "video_url": "",
+      "muscle_groups": [8, 9, 10, 21]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 26,
+    "fields": {
+      "name": "Romanian Deadlift",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Hinge at hips lowering bar along legs maintaining slight knee bend.",
+      "video_url": "",
+      "muscle_groups": [7, 8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 27,
+    "fields": {
+      "name": "Rack Pull",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Lift bar from rack height focusing on lockout.",
+      "video_url": "",
+      "muscle_groups": [2, 8, 13, 14, 21]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 28,
+    "fields": {
+      "name": "Back Extension",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Extend spine from flexed position squeezing lower back.",
+      "video_url": "",
+      "muscle_groups": [2, 7, 8, 10]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 29,
+    "fields": {
+      "name": "Good Morning",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Hinge forward at hips with bar on back maintaining neutral spine.",
+      "video_url": "",
+      "muscle_groups": [8, 9, 10, 21]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 30,
+    "fields": {
+      "name": "Overhead Press",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Press bar overhead from shoulder level.",
+      "video_url": "",
+      "muscle_groups": [3, 16, 17, 26]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 31,
+    "fields": {
+      "name": "Arnold Press",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Rotate palms while pressing dumbbells overhead.",
+      "video_url": "",
+      "muscle_groups": [3, 15, 16, 17]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 32,
+    "fields": {
+      "name": "Front Raise",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Raise weight straight in front to shoulder height.",
+      "video_url": "",
+      "muscle_groups": [3, 16]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 33,
+    "fields": {
+      "name": "Lateral Raise",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Raise arms to sides to shoulder height.",
+      "video_url": "",
+      "muscle_groups": [3, 17]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 34,
+    "fields": {
+      "name": "Upright Row",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Pull bar upward toward chin leading with elbows.",
+      "video_url": "",
+      "muscle_groups": [3, 14, 17]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 35,
+    "fields": {
+      "name": "Rear Delt Fly",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Raise arms outward while bent over targeting rear delts.",
+      "video_url": "",
+      "muscle_groups": [3, 15]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 36,
+    "fields": {
+      "name": "Face Pull",
+      "exercise_type": "strength",
+      "equipment": "cable",
+      "instructions": "Pull rope toward face keeping elbows high.",
+      "video_url": "",
+      "muscle_groups": [3, 14, 15]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 37,
+    "fields": {
+      "name": "Reverse Pec Deck",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Pull handles outward targeting rear delts.",
+      "video_url": "",
+      "muscle_groups": [3, 15]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 38,
+    "fields": {
+      "name": "Barbell Curl",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Curl bar upward keeping elbows fixed.",
+      "video_url": "",
+      "muscle_groups": [4, 18, 22, 23, 24]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 39,
+    "fields": {
+      "name": "Dumbbell Curl",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Curl dumbbells upward with controlled motion.",
+      "video_url": "",
+      "muscle_groups": [4, 18, 22, 23, 24, 25]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 40,
+    "fields": {
+      "name": "Hammer Curl",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Curl dumbbells with neutral grip.",
+      "video_url": "",
+      "muscle_groups": [4, 18, 22, 24]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 41,
+    "fields": {
+      "name": "Preacher Curl",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Curl weight using preacher bench for isolation.",
+      "video_url": "",
+      "muscle_groups": [4, 22, 23]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 42,
+    "fields": {
+      "name": "Concentration Curl",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Curl dumbbell while seated focusing on peak contraction.",
+      "video_url": "",
+      "muscle_groups": [4, 18, 22, 23]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 43,
+    "fields": {
+      "name": "Cable Curl",
+      "exercise_type": "strength",
+      "equipment": "cable",
+      "instructions": "Curl cable handle upward keeping elbows stationary.",
+      "video_url": "",
+      "muscle_groups": [4, 22, 23]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 44,
+    "fields": {
+      "name": "EZ Bar Curl",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Curl EZ bar upward with controlled motion.",
+      "video_url": "",
+      "muscle_groups": [4, 22, 23]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 45,
+    "fields": {
+      "name": "Incline Dumbbell Curl",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Perform curls seated on incline bench allowing full stretch.",
+      "video_url": "",
+      "muscle_groups": [4, 22, 23]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 46,
+    "fields": {
+      "name": "Tricep Pushdown",
+      "exercise_type": "strength",
+      "equipment": "cable",
+      "instructions": "Extend elbows fully pushing cable downward.",
+      "video_url": "",
+      "muscle_groups": [5, 26, 27, 28]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 47,
+    "fields": {
+      "name": "Skull Crushers",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Lower bar toward forehead then extend arms fully.",
+      "video_url": "",
+      "muscle_groups": [5, 26, 27, 28]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 48,
+    "fields": {
+      "name": "Overhead Tricep Extension",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Lower weight behind head and extend arms overhead.",
+      "video_url": "",
+      "muscle_groups": [5, 26, 27, 28]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 49,
+    "fields": {
+      "name": "Dips (Tricep-Focused)",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Keep torso upright to emphasize triceps.",
+      "video_url": "",
+      "muscle_groups": [5, 12, 16, 26, 27, 28]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 50,
+    "fields": {
+      "name": "Cable Kickbacks",
+      "exercise_type": "strength",
+      "equipment": "cable",
+      "instructions": "Extend arm backward fully squeezing triceps.",
+      "video_url": "",
+      "muscle_groups": [7, 8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 51,
+    "fields": {
+      "name": "Back Squat",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Descend to parallel and drive upward through heels.",
+      "video_url": "",
+      "muscle_groups": [6, 7, 8, 10]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 52,
+    "fields": {
+      "name": "Front Squat",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Keep torso upright while squatting.",
+      "video_url": "",
+      "muscle_groups": [6, 8, 10]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 53,
+    "fields": {
+      "name": "Hack Squat",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Lower sled and press upward targeting quads.",
+      "video_url": "",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 54,
+    "fields": {
+      "name": "Leg Press",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Press platform upward extending legs.",
+      "video_url": "",
+      "muscle_groups": [6, 8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 55,
+    "fields": {
+      "name": "Leg Extension",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Extend knees fully focusing on quads.",
+      "video_url": "",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 56,
+    "fields": {
+      "name": "Bulgarian Split Squat",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Lower rear-foot elevated squat maintaining balance.",
+      "video_url": "",
+      "muscle_groups": [6, 8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 57,
+    "fields": {
+      "name": "Lunges",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Step forward and lower until knees reach 90 degrees.",
+      "video_url": "",
+      "muscle_groups": [6, 8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 58,
+    "fields": {
+      "name": "Lying Leg Curl",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Curl heels toward glutes.",
+      "video_url": "",
+      "muscle_groups": [7]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 59,
+    "fields": {
+      "name": "Seated Leg Curl",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Curl weight downward engaging hamstrings.",
+      "video_url": "",
+      "muscle_groups": [7]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 60,
+    "fields": {
+      "name": "Nordic Curl",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Lower body forward slowly controlling hamstrings.",
+      "video_url": "",
+      "muscle_groups": [7]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 61,
+    "fields": {
+      "name": "Hip Thrust",
+      "exercise_type": "strength",
+      "equipment": "barbell",
+      "instructions": "Drive hips upward squeezing glutes.",
+      "video_url": "",
+      "muscle_groups": [8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 62,
+    "fields": {
+      "name": "Glute Bridge",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Raise hips from floor squeezing glutes.",
+      "video_url": "",
+      "muscle_groups": [8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 63,
+    "fields": {
+      "name": "Standing Calf Raise",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Raise heels upward fully extending ankles.",
+      "video_url": "",
+      "muscle_groups": [9]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 64,
+    "fields": {
+      "name": "Seated Calf Raise",
+      "exercise_type": "strength",
+      "equipment": "machine",
+      "instructions": "Raise heels while seated targeting soleus.",
+      "video_url": "",
+      "muscle_groups": [9]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 65,
+    "fields": {
+      "name": "Crunches",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Lift shoulders off floor engaging abs.",
+      "video_url": "",
+      "muscle_groups": [10]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 66,
+    "fields": {
+      "name": "Sit-ups",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Lift torso fully to seated position.",
+      "video_url": "",
+      "muscle_groups": [10, 19, 20]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 67,
+    "fields": {
+      "name": "Hanging Leg Raises",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Raise legs while hanging from bar.",
+      "video_url": "",
+      "muscle_groups": [10, 19]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 68,
+    "fields": {
+      "name": "Plank",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Hold forearm plank maintaining neutral spine.",
+      "video_url": "",
+      "muscle_groups": [10, 19]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 69,
+    "fields": {
+      "name": "Russian Twists",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Rotate torso side to side engaging obliques.",
+      "video_url": "",
+      "muscle_groups": [10, 19, 20]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 70,
+    "fields": {
+      "name": "Treadmill Running",
+      "exercise_type": "cardio",
+      "equipment": "machine",
+      "instructions": "Run at steady pace or intervals.",
+      "video_url": "",
+      "muscle_groups": [7, 10]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 71,
+    "fields": {
+      "name": "Incline Walking",
+      "exercise_type": "cardio",
+      "equipment": "machine",
+      "instructions": "Walk at incline for increased intensity.",
+      "video_url": "",
+      "muscle_groups": [7, 8, 9]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 72,
+    "fields": {
+      "name": "Stairmaster",
+      "exercise_type": "cardio",
+      "equipment": "machine",
+      "instructions": "Climb stairs continuously at set resistance.",
+      "video_url": "",
+      "muscle_groups": [6, 8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 73,
+    "fields": {
+      "name": "Rowing Machine",
+      "exercise_type": "cardio",
+      "equipment": "machine",
+      "instructions": "Row with full body extension and contraction.",
+      "video_url": "",
+      "muscle_groups": [6, 7, 10]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 74,
+    "fields": {
+      "name": "Cycling",
+      "exercise_type": "cardio",
+      "equipment": "machine",
+      "instructions": "Pedal continuously maintaining cadence.",
+      "video_url": "",
+      "muscle_groups": [7, 8, 9]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 75,
+    "fields": {
+      "name": "Jump Rope",
+      "exercise_type": "cardio",
+      "equipment": "bodyweight",
+      "instructions": "Jump continuously rotating rope under feet.",
+      "video_url": "",
+      "muscle_groups": [6, 7, 8, 9]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 76,
+    "fields": {
+      "name": "Sled Push",
+      "exercise_type": "cardio",
+      "equipment": "machine",
+      "instructions": "Drive sled forward with powerful strides.",
+      "video_url": "",
+      "muscle_groups": [6, 7, 8]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 77,
+    "fields": {
+      "name": "Kettlebell Swings",
+      "exercise_type": "strength",
+      "equipment": "kettlebell",
+      "instructions": "Hinge hips explosively swinging kettlebell to chest height.",
+      "video_url": "",
+      "muscle_groups": [8, 9, 21]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 78,
+    "fields": {
+      "name": "Battle Ropes",
+      "exercise_type": "cardio",
+      "equipment": "bodyweight",
+      "instructions": "Create waves with ropes using full body power.",
+      "video_url": "",
+      "muscle_groups": [2, 3, 4, 5, 10]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 79,
+    "fields": {
+      "name": "Farmer's Carries",
+      "exercise_type": "strength",
+      "equipment": "dumbbell",
+      "instructions": "Walk while holding heavy weights at sides.",
+      "video_url": "",
+      "muscle_groups": [3, 6, 7, 10, 18]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 80,
+    "fields": {
+      "name": "Box Jumps",
+      "exercise_type": "strength",
+      "equipment": "bodyweight",
+      "instructions": "Jump explosively onto box landing softly.",
+      "video_url": "",
+      "muscle_groups": [6, 7, 8, 9]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 81,
+    "fields": {
+      "name": "Medicine Ball Slams",
+      "exercise_type": "strength",
+      "equipment": "medicine_ball",
+      "instructions": "Lift ball overhead and slam to ground forcefully.",
+      "video_url": "",
+      "muscle_groups": [2, 3, 4, 5, 10]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 82,
+    "fields": {
+      "name": "Agility Ladder",
+      "exercise_type": "cardio",
+      "equipment": "bodyweight",
+      "instructions": "Perform quick foot drills through ladder.",
+      "video_url": "",
+      "muscle_groups": [6, 7, 8, 9, 19]
+    }
+  },
+  {
+    "model": "main_app.exercise",
+    "pk": 83,
+    "fields": {
+      "name": "Sprints",
+      "exercise_type": "cardio",
+      "equipment": "bodyweight",
+      "instructions": "Run short distances at maximum speed.",
+      "video_url": "",
+      "muscle_groups": [6, 7, 8, 9]
+    }
+  }
+]
