@@ -3,14 +3,27 @@ from rest_framework.response import Response
 from rest_framework import viewsets, permissions, generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import ExerciseSerializer, MuscleGroupSerializer, UserSerializer, WorkoutSerializer, WorkoutItemSerializer, WorkoutTemplateSerializer, WorkoutTemplateItemSerializer
-from .models import Exercise, MuscleGroup, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem
+from .serializers import ExerciseSerializer, MuscleGroupSerializer, UserSerializer, WorkoutSerializer, WorkoutItemSerializer, WorkoutTemplateSerializer, WorkoutTemplateItemSerializer, WorkoutPlanSerializer, WorkoutTemplatePlanSerializer
+from .models import Exercise, MuscleGroup, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem, WorkoutPlan, WorkoutTemplatePlan
 
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.utils.dateparse import parse_datetime
 from django.db import models
+
+from datetime import timedelta
+from django.db import transaction
+from django.db.models import Q
+from django.utils import timezone
+from rest_framework.decorators import action
+from rest_framework import status
+from django.core.exceptions import ValidationError as DjangoValidationError
+
+class ConflictError(Exception):
+    def __init__(self, conflicts):
+        self.conflicts = conflicts
+        super().__init__("Workout schedule conflicts detected.")
 
 # User Registration
 class CreateUserView(generics.CreateAPIView):
@@ -137,4 +150,115 @@ class WorkoutTemplateItemViewSet(viewsets.ModelViewSet):
         template = serializer.validated_data["template"]
         if template.user != self.request.user:
             raise ValidationError("You do not own this template.")
+        serializer.save()
+
+
+class WorkoutPlanViewSet(viewsets.ModelViewSet):
+    serializer_class = WorkoutPlanSerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnlyPublic]
+
+    def get_queryset(self):
+        from django.db.models import Q
+        return WorkoutPlan.objects.filter(Q(user=self.request.user) | Q(is_public=True)).distinct().order_by("-updated_at")
+
+    @action(detail=True, methods=["post"])
+    def generate(self, request, pk=None):
+        plan = self.get_object()
+        cycles = int(request.data.get("cycles", 1))
+        if cycles < 1:
+            raise ValidationError("cycles must be >= 1")
+
+        links = (
+            WorkoutTemplatePlan.objects
+            .filter(plan=plan)
+            .select_related("template")
+            .prefetch_related("template__items__exercise")
+            .order_by("order", "id")
+        )
+        if not links.exists():
+            raise ValidationError("Plan has no templates.")
+
+        ordered_links = list(links)
+        template_count = len(ordered_links)
+
+        candidate_slots = []
+        for cycle_idx in range(cycles):
+            for pos, link in enumerate(ordered_links):
+                occurrence_index = cycle_idx * template_count + pos
+                slot_start = plan.start_dt + timedelta(days=occurrence_index * plan.interval)
+                slot_end = slot_start + timedelta(minutes=link.template.duration_minutes)
+                candidate_slots.append((slot_start, slot_end, link))
+
+        now = timezone.now()
+
+        try:
+            with transaction.atomic():
+                deleted_count, _ = Workout.objects.filter(
+                    user=request.user,
+                    plan=plan,
+                    start_dt__gte=now,
+                ).delete()
+
+                created_ids = []
+                for slot_start, slot_end, link in candidate_slots:
+                    workout = Workout.objects.create(
+                        user=request.user,
+                        plan=plan,
+                        template=link.template,
+                        title=link.template.title,
+                        start_dt=slot_start,
+                        end_dt=slot_end,
+                        status=Workout.Status.PLANNED,
+                    )
+                    items = [
+                        WorkoutItem(
+                            workout=workout,
+                            exercise=item.exercise,
+                            order=item.order,
+                            sets=item.sets,
+                            reps=item.reps,
+                            weight=item.weight,
+                            weight_unit=item.weight_unit,
+                            duration_seconds=item.duration_seconds,
+                            distance_meters=item.distance_meters,
+                            rpe=item.rpe,
+                            notes=item.notes,
+                        )
+                        for item in link.template.items.all()
+                    ]
+                    if items:
+                        WorkoutItem.objects.bulk_create(items)
+                    created_ids.append(workout.id)
+
+        except DjangoValidationError as e:
+            return Response(
+                {"detail": "Generated workouts conflict with existing calendar workouts.", "errors": e.messages},
+                status=status.HTTP_409_CONFLICT,
+            )
+
+        return Response(
+            {
+                "plan_id": plan.id,
+                "cycles": cycles,
+                "deleted_future_generated_count": deleted_count,
+                "created_count": len(created_ids),
+                "workout_ids": created_ids,
+            },
+            status=status.HTTP_201_CREATED,
+        )
+
+class WorkoutTemplatePlanViewSet(viewsets.ModelViewSet):
+    serializer_class = WorkoutTemplatePlanSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return WorkoutTemplatePlan.objects.filter(plan__user=self.request.user).order_by("order", "id")
+
+    def perform_create(self, serializer):
+        plan = serializer.validated_data["plan"]
+        template = serializer.validated_data["template"]
+        if plan.user != self.request.user:
+            raise ValidationError("You do not own this plan.")
+        if template.user != self.request.user and not template.is_public:
+            raise ValidationError("You can only attach your own templates (or public templates, if allowed).")
         serializer.save()

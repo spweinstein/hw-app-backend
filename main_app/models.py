@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.db.models import Q
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
@@ -58,6 +60,7 @@ class WorkoutTemplate(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    duration_minutes = models.PositiveIntegerField()
 
     class Meta:
         unique_together = ("user", "title")
@@ -97,6 +100,52 @@ class WorkoutTemplateItem(models.Model):
     def __str__(self) -> str:
         return f"{self.template.title} - {self.exercise.name}"
     
+class WorkoutPlan(models.Model):
+    """
+    Recurrence + program container. Generates Workout instances (calendar events).
+    Attaches to templates via the through table WorkoutTemplatePlan.
+    """
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="workout_plans"
+    )
+    title = models.CharField(max_length=140)
+    start_dt = models.DateTimeField()
+    interval = models.PositiveIntegerField(default=1)
+    is_public = models.BooleanField(default=False)
+
+    # M2M to templates (composition)
+    templates = models.ManyToManyField(
+        WorkoutTemplate,
+        through="WorkoutTemplatePlan",
+        related_name="plans",
+        blank=True,
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("user", "title")
+
+    def __str__(self) -> str:
+        return self.title
+    
+class WorkoutTemplatePlan(models.Model):
+    """
+    Through table connecting WorkoutPlans <-> WorkoutTemplates.
+    """
+    plan = models.ForeignKey(WorkoutPlan, on_delete=models.CASCADE)
+    template = models.ForeignKey(WorkoutTemplate, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(default=0)
+    time = models.TimeField()
+
+    class Meta:
+        unique_together = ("plan", "template", "order")
+        ordering = ["order", "id"]
+
+    def __str__(self) -> str:
+        return f"{self.plan.title} ↔ {self.template.title}"
 
 class Workout(models.Model):
     """
@@ -113,15 +162,16 @@ class Workout(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="workouts"
     )
 
-    # plan = models.ForeignKey(
-    #     WorkoutPlan,
-    #     null=True,
-    #     blank=True,
-    #     on_delete=models.SET_NULL,
-    #     related_name="workouts",
-    # )
+    plan = models.ForeignKey(
+        "WorkoutPlan",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="workouts",
+    )
+
     template = models.ForeignKey(
-        WorkoutTemplate,
+        "WorkoutTemplate",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -131,7 +181,7 @@ class Workout(models.Model):
 
     title = models.CharField(max_length=140)
     start_dt = models.DateTimeField(db_index=True)
-    end_dt = models.DateTimeField(null=True, blank=True)
+    end_dt = models.DateTimeField()
 
     status = models.CharField(
         max_length=10, choices=Status.choices, default=Status.PLANNED
@@ -146,6 +196,23 @@ class Workout(models.Model):
 
     def __str__(self) -> str:
         return f"{self.title} @ {self.start_dt}"
+    
+    def clean(self):
+        if self.start_dt and self.end_dt:
+            conflicts = Workout.objects.filter(
+                Q(start_dt__lt=self.end_dt, end_dt__gt=self.start_dt),
+                user=self.user,
+            )
+            if self.pk:
+                conflicts = conflicts.exclude(pk=self.pk)
+            if conflicts.exists():
+                raise ValidationError(
+                    f"This workout conflicts with an existing workout on your calendar."
+                )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
 
 class WorkoutItem(models.Model):

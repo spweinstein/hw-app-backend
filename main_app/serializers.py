@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MuscleGroup, Exercise, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem
+from .models import MuscleGroup, Exercise, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem, WorkoutPlan, WorkoutTemplatePlan
 from django.contrib.auth.models import User
 from django.db import transaction
 
@@ -114,7 +114,7 @@ class WorkoutTemplateSerializer(serializers.ModelSerializer):
     source_template = serializers.PrimaryKeyRelatedField(
         queryset=WorkoutTemplate.objects.all(),
         required=False,
-        allow_null=True,
+        allow_null=True
     )
 
     class Meta:
@@ -157,5 +157,59 @@ class WorkoutTemplateSerializer(serializers.ModelSerializer):
                             for item in items_data
                         ]
                     )
+        return instance
 
+class WorkoutTemplatePlanSerializer(serializers.ModelSerializer):
+    template_detail = WorkoutTemplateSerializer(source="template", read_only=True)
+
+    class Meta:
+        model = WorkoutTemplatePlan
+        fields = "__all__"
+        read_only_fields = ["plan"]
+
+class WorkoutPlanSerializer(serializers.ModelSerializer):
+    # Write: send list of through-table objects
+    template_links = WorkoutTemplatePlanSerializer(
+        many=True, required=False, source="workouttemplateplan_set"
+    )
+
+    class Meta:
+        model = WorkoutPlan
+        fields = "__all__"
+        read_only_fields = ["created_at", "updated_at"]
+
+    def create(self, validated_data):
+        request = self.context["request"]
+        links_data = validated_data.pop("workouttemplateplan_set", [])
+        validated_data["user"] = request.user
+
+        with transaction.atomic():
+            plan = WorkoutPlan.objects.create(**validated_data)
+            if links_data:
+                WorkoutTemplatePlan.objects.bulk_create(
+                    [
+                        WorkoutTemplatePlan(plan=plan, **link)
+                        for link in links_data
+                    ]
+                )
+        return plan
+
+    def update(self, instance, validated_data):
+        links_data = validated_data.pop("workouttemplateplan_set", None)
+
+        with transaction.atomic():
+            for attr, val in validated_data.items():
+                setattr(instance, attr, val)
+            instance.save()
+
+            if links_data is not None:
+                # Replace links if provided
+                WorkoutTemplatePlan.objects.filter(plan=instance).delete()
+                if links_data:
+                    WorkoutTemplatePlan.objects.bulk_create(
+                        [
+                            WorkoutTemplatePlan(plan=instance, **link)
+                            for link in links_data
+                        ]
+                    )
         return instance
