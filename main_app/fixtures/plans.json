@@ -1,0 +1,256 @@
+[
+  {
+    "model": "main_app.workoutplan",
+    "pk": 201,
+    "fields": {
+      "user": 1,
+      "title": "Push Pull Legs Routine",
+      "start_dt": "2026-03-09T00:00:00Z",
+      "interval": 1,
+      "is_public": true
+    }
+  },
+  {
+    "model": "main_app.workoutplan",
+    "pk": 202,
+    "fields": {
+      "user": 1,
+      "title": "Upper Lower Cardio/Core Routine",
+      "start_dt": "2026-03-10T00:00:00Z",
+      "interval": 1,
+      "is_public": true
+    }
+  },
+  {
+    "model": "main_app.workoutplan",
+    "pk": 203,
+    "fields": {
+      "user": 1,
+      "title": "Push Pull Lower Upper Lower Routine",
+      "start_dt": "2026-03-09T00:00:00Z",
+      "interval": 1,
+      "is_public": true
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3101,
+    "fields": {
+      "plan": 201,
+      "template": 101,
+      "order": 1,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3102,
+    "fields": {
+      "plan": 201,
+      "template": 102,
+      "order": 2,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3103,
+    "fields": {
+      "plan": 201,
+      "template": 103,
+      "order": 3,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3104,
+    "fields": {
+      "plan": 201,
+      "template": 101,
+      "order": 4,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3105,
+    "fields": {
+      "plan": 201,
+      "template": 102,
+      "order": 5,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3106,
+    "fields": {
+      "plan": 201,
+      "template": 104,
+      "order": 6,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3201,
+    "fields": {
+      "plan": 202,
+      "template": 105,
+      "order": 1,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3202,
+    "fields": {
+      "plan": 202,
+      "template": 106,
+      "order": 2,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3203,
+    "fields": {
+      "plan": 202,
+      "template": 107,
+      "order": 3,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3204,
+    "fields": {
+      "plan": 202,
+      "template": 105,
+      "order": 4,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3205,
+    "fields": {
+      "plan": 202,
+      "template": 106,
+      "order": 5,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3206,
+    "fields": {
+      "plan": 202,
+      "template": 107,
+      "order": 6,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3301,
+    "fields": {
+      "plan": 203,
+      "template": 101,
+      "order": 1,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3302,
+    "fields": {
+      "plan": 203,
+      "template": 102,
+      "order": 2,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3303,
+    "fields": {
+      "plan": 203,
+      "template": 106,
+      "order": 3,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3304,
+    "fields": {
+      "plan": 203,
+      "template": 105,
+      "order": 4,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3305,
+    "fields": {
+      "plan": 203,
+      "template": 106,
+      "order": 5,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workoutplan",
+    "pk": 303,
+    "fields": {
+      "user": 1,
+      "title": "Full body upper/ full body lower",
+      "start_dt": "2026-03-09T00:00:00Z",
+      "interval": 1,
+      "is_public": true
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3101,
+    "fields": {
+      "plan": 301,
+      "template": 108,
+      "order": 1,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3102,
+    "fields": {
+      "plan": 301,
+      "template": 109,
+      "order": 2,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3103,
+    "fields": {
+      "plan": 301,
+      "template": 108,
+      "order": 3,
+      "time": "18:00:00"
+    }
+  },
+  {
+    "model": "main_app.workouttemplateplan",
+    "pk": 3104,
+    "fields": {
+      "plan": 301,
+      "template": 109,
+      "order": 4,
+      "time": "18:00:00"
+    }
+  }
+]
