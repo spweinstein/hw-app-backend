@@ -8,7 +8,7 @@
       "description": "Chest, shoulders, and triceps focused push workout.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 60
+      "duration": 60
     }
   },
   {
@@ -20,7 +20,7 @@
       "description": "Back and biceps focused pulling movements.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 60
+      "duration": 60
     }
   },
   {
@@ -32,7 +32,7 @@
       "description": "Lower body workout emphasizing quadriceps development.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 60
+      "duration": 60
     }
   },
   {
@@ -44,7 +44,7 @@
       "description": "Posterior chain workout focusing on hamstrings and glutes.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 60
+      "duration": 60
     }
   },
   {
@@ -56,7 +56,7 @@
       "description": "Balanced upper body workout hitting chest, back, shoulders, and arms.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 60
+      "duration": 60
     }
   },
   {
@@ -68,7 +68,7 @@
       "description": "Full lower body workout targeting quads, hamstrings, glutes, and calves.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 60
+      "duration": 60
     }
   },
   {
@@ -80,7 +80,7 @@
       "description": "Cardio endurance training combined with core strengthening exercises.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 40
+      "duration": 40
     }
   },
   {
@@ -92,7 +92,7 @@
       "description": "Full body workout with higher volume on upper body muscle groups.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 60
+      "duration": 60
     }
   },
   {
@@ -104,7 +104,7 @@
       "description": "Full body workout emphasizing lower body movements and strength.",
       "is_public": true,
       "parent": null,
-      "duration_minutes": 60
+      "duration": 60
     }
   },
   {
@@ -118,7 +118,7 @@
       "reps": 8,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Keep chest up and drive through your heels."
@@ -135,7 +135,7 @@
       "reps": 8,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Maintain slight knee bend and hinge at the hips."
@@ -152,7 +152,7 @@
       "reps": 12,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Perform controlled lunges and keep torso upright."
@@ -169,7 +169,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Do not lock out your knees at the top."
@@ -186,7 +186,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Keep front knee tracking over toes."
@@ -203,7 +203,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Pause briefly at the contraction."
@@ -220,7 +220,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Pause for one second at the top and squeeze glutes."
@@ -237,7 +237,7 @@
       "reps": 12,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Focus on full glute contraction."
@@ -254,7 +254,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Pause briefly at the top of each rep."
@@ -271,7 +271,7 @@
       "reps": 6,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Primary chest movement. Control the descent and press to full lockout."
@@ -288,7 +288,7 @@
       "reps": 8,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Full range pull-ups. Use assistance if needed."
@@ -305,7 +305,7 @@
       "reps": 8,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Keep core tight and press bar directly overhead."
@@ -322,7 +322,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Control the pull and squeeze shoulder blades together."
@@ -339,7 +339,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Avoid swinging the bar and keep elbows stable."
@@ -356,7 +356,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Control the pushdown and fully extend the arms."
@@ -373,7 +373,7 @@
       "reps": 6,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Support lower body movement. Keep chest up and drive through heels."
@@ -390,7 +390,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Pause briefly at the top of each calf raise."
@@ -407,7 +407,7 @@
       "reps": null,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": 60,
+      "duration": 60,
       "distance": null,
       "rpe": 7,
       "notes": "Maintain a rigid plank position and neutral spine."
@@ -424,7 +424,7 @@
       "reps": 8,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Keep chest up and drive through your heels."
@@ -441,7 +441,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Hinge at the hips and keep the bar close to your legs."
@@ -458,7 +458,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Keep your torso upright and control the descent."
@@ -475,7 +475,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Lower the dumbbells slowly and press explosively."
@@ -492,7 +492,7 @@
       "reps": 12,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Pull toward your torso and squeeze your shoulder blades."
@@ -509,7 +509,7 @@
       "reps": 12,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Pull the bar to your upper chest while keeping your chest lifted."
@@ -526,7 +526,7 @@
       "reps": 12,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Pause at the top and squeeze your glutes."
@@ -543,7 +543,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Control the lowering phase and pause at the top."
@@ -560,7 +560,7 @@
       "reps": 12,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Avoid swinging and lift with your core."
@@ -577,7 +577,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Keep a slight bend in your knees and hinge at the hips while lowering the bar."
@@ -594,7 +594,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Pause for 1–2 seconds at the top and squeeze your glutes."
@@ -611,7 +611,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Take a slightly longer step forward to emphasize the glutes."
@@ -628,7 +628,7 @@
       "reps": 12,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Control the lowering phase and avoid using momentum."
@@ -645,7 +645,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Pause briefly when your heels are closest to your glutes."
@@ -662,7 +662,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Keep your core tight and squeeze your glutes at the top."
@@ -679,7 +679,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Drive the kettlebell with your hips, not your arms."
@@ -696,7 +696,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Think about squeezing your glutes rather than arching your lower back."
@@ -713,7 +713,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Pause at the top of each rep for better contraction."
@@ -730,7 +730,7 @@
       "reps": null,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": 120,
+      "duration": 120,
       "distance": null,
       "rpe": 7,
       "notes": "Run at a moderate pace for 2 minutes, followed by 1 minute walk or slow jog recovery."
@@ -747,7 +747,7 @@
       "reps": null,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": 45,
+      "duration": 45,
       "distance": null,
       "rpe": 7,
       "notes": "Jump rope at a fast pace for 45 seconds. Rest 30 seconds between sets."
@@ -764,7 +764,7 @@
       "reps": null,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": 45,
+      "duration": 45,
       "distance": null,
       "rpe": 7,
       "notes": "Row strongly for 45 seconds followed by 45 seconds easy pace recovery."
@@ -781,7 +781,7 @@
       "reps": 25,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 6,
       "notes": "Perform controlled crunches focusing on contracting your abdominal muscles."
@@ -798,7 +798,7 @@
       "reps": null,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": 60,
+      "duration": 60,
       "distance": null,
       "rpe": 6,
       "notes": "Hold a strong plank position with a neutral spine and tight core."
@@ -815,7 +815,7 @@
       "reps": 15,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Lift legs using your core and avoid swinging."
@@ -832,7 +832,7 @@
       "reps": 30,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 6,
       "notes": "Rotate your torso side to side while keeping your core tight."
@@ -849,7 +849,7 @@
       "reps": 7,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Main compound press. Rest 120 sec."
@@ -866,7 +866,7 @@
       "reps": 9,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Upper chest focus. Rest 90 sec."
@@ -883,7 +883,7 @@
       "reps": 9,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Shoulder compound press. Rest 90 sec."
@@ -900,7 +900,7 @@
       "reps": 11,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Chest isolation. Controlled reps. Rest 60 sec."
@@ -917,7 +917,7 @@
       "reps": 13,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Side delt isolation. Rest 60 sec."
@@ -934,7 +934,7 @@
       "reps": 11,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Triceps pushdowns. Rest 60 sec."
@@ -951,7 +951,7 @@
       "reps": 13,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Triceps finisher. Long head focus. Rest 60 sec."
@@ -968,7 +968,7 @@
       "reps": 6,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Main compound lift. Rest 2–3 min."
@@ -985,7 +985,7 @@
       "reps": 7,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Front squat for quad emphasis. Rest 2 min."
@@ -1002,7 +1002,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Leg press quad builder. Rest 90 sec."
@@ -1019,7 +1019,7 @@
       "reps": 9,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Bulgarian split squat. 8–10 reps each leg. Rest 90 sec."
@@ -1036,7 +1036,7 @@
       "reps": 13,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Quad isolation. Controlled reps. Rest 60 sec."
@@ -1053,7 +1053,7 @@
       "reps": 13,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Standing calf raises. Rest 60 sec."
@@ -1070,7 +1070,7 @@
       "reps": 5,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 9,
       "notes": "Main compound lift. Rest 2–3 min."
@@ -1087,7 +1087,7 @@
       "reps": 8,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Vertical pull movement. Rest 2 min."
@@ -1104,7 +1104,7 @@
       "reps": 9,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Horizontal rowing movement. Rest 90 sec."
@@ -1121,7 +1121,7 @@
       "reps": 11,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Lat isolation exercise. Rest 90 sec."
@@ -1138,7 +1138,7 @@
       "reps": 13,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Rear delt and upper back work. Rest 60 sec."
@@ -1155,7 +1155,7 @@
       "reps": 10,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Barbell curls for biceps. Rest 60 sec."
@@ -1172,7 +1172,7 @@
       "reps": 11,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Hammer curl finisher targeting biceps and forearms. Rest 60 sec."
@@ -1189,7 +1189,7 @@
       "reps": 6,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Main pressing movement. Rest 2–3 min."
@@ -1206,7 +1206,7 @@
       "reps": 8,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Vertical pulling movement. Rest 2 min."
@@ -1223,7 +1223,7 @@
       "reps": 9,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Horizontal row for mid-back. Rest 90 sec."
@@ -1240,7 +1240,7 @@
       "reps": 9,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 8,
       "notes": "Shoulder pressing movement. Rest 90 sec."
@@ -1257,7 +1257,7 @@
       "reps": 11,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Chest isolation movement. Rest 60 sec."
@@ -1274,7 +1274,7 @@
       "reps": 13,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Side delt isolation. Rest 60 sec."
@@ -1291,7 +1291,7 @@
       "reps": 11,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Dumbbell curls for biceps. Rest 60 sec."
@@ -1308,7 +1308,7 @@
       "reps": 11,
       "weight": null,
       "weight_unit": null,
-      "duration_seconds": null,
+      "duration": null,
       "distance": null,
       "rpe": 7,
       "notes": "Tricep pushdowns to finish. Rest 60 sec."
