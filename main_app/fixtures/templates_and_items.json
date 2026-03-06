@@ -119,7 +119,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Keep chest up and drive through your heels."
     }
@@ -136,7 +136,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Maintain slight knee bend and hinge at the hips."
     }
@@ -153,7 +153,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Perform controlled lunges and keep torso upright."
     }
@@ -170,7 +170,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Do not lock out your knees at the top."
     }
@@ -187,7 +187,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Keep front knee tracking over toes."
     }
@@ -204,7 +204,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Pause briefly at the contraction."
     }
@@ -221,7 +221,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Pause for one second at the top and squeeze glutes."
     }
@@ -238,7 +238,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Focus on full glute contraction."
     }
@@ -255,7 +255,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Pause briefly at the top of each rep."
     }
@@ -272,7 +272,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Primary chest movement. Control the descent and press to full lockout."
     }
@@ -289,7 +289,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Full range pull-ups. Use assistance if needed."
     }
@@ -306,7 +306,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Keep core tight and press bar directly overhead."
     }
@@ -323,7 +323,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Control the pull and squeeze shoulder blades together."
     }
@@ -340,7 +340,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Avoid swinging the bar and keep elbows stable."
     }
@@ -357,7 +357,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Control the pushdown and fully extend the arms."
     }
@@ -374,7 +374,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Support lower body movement. Keep chest up and drive through heels."
     }
@@ -391,7 +391,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Pause briefly at the top of each calf raise."
     }
@@ -408,7 +408,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": 60,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Maintain a rigid plank position and neutral spine."
     }
@@ -425,7 +425,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Keep chest up and drive through your heels."
     }
@@ -442,7 +442,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Hinge at the hips and keep the bar close to your legs."
     }
@@ -459,7 +459,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Keep your torso upright and control the descent."
     }
@@ -476,7 +476,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Lower the dumbbells slowly and press explosively."
     }
@@ -493,7 +493,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Pull toward your torso and squeeze your shoulder blades."
     }
@@ -510,7 +510,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Pull the bar to your upper chest while keeping your chest lifted."
     }
@@ -527,7 +527,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Pause at the top and squeeze your glutes."
     }
@@ -544,7 +544,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Control the lowering phase and pause at the top."
     }
@@ -561,7 +561,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Avoid swinging and lift with your core."
     }
@@ -578,7 +578,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Keep a slight bend in your knees and hinge at the hips while lowering the bar."
     }
@@ -595,7 +595,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Pause for 1–2 seconds at the top and squeeze your glutes."
     }
@@ -612,7 +612,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Take a slightly longer step forward to emphasize the glutes."
     }
@@ -629,7 +629,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Control the lowering phase and avoid using momentum."
     }
@@ -646,7 +646,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Pause briefly when your heels are closest to your glutes."
     }
@@ -663,7 +663,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Keep your core tight and squeeze your glutes at the top."
     }
@@ -680,7 +680,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 8,
       "notes": "Drive the kettlebell with your hips, not your arms."
     }
@@ -697,7 +697,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Think about squeezing your glutes rather than arching your lower back."
     }
@@ -714,7 +714,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Pause at the top of each rep for better contraction."
     }
@@ -731,7 +731,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": 120,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Run at a moderate pace for 2 minutes, followed by 1 minute walk or slow jog recovery."
     }
@@ -748,7 +748,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": 45,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Jump rope at a fast pace for 45 seconds. Rest 30 seconds between sets."
     }
@@ -765,7 +765,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": 45,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Row strongly for 45 seconds followed by 45 seconds easy pace recovery."
     }
@@ -782,7 +782,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 6,
       "notes": "Perform controlled crunches focusing on contracting your abdominal muscles."
     }
@@ -799,7 +799,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": 60,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 6,
       "notes": "Hold a strong plank position with a neutral spine and tight core."
     }
@@ -816,7 +816,7 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 7,
       "notes": "Lift legs using your core and avoid swinging."
     }
@@ -833,485 +833,485 @@
       "weight": null,
       "weight_unit": null,
       "duration_seconds": null,
-      "distance_meters": null,
+      "distance": null,
       "rpe": 6,
       "notes": "Rotate your torso side to side while keeping your core tight."
     }
   },
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1501,
-  "fields": {
-    "template": 101,
-    "exercise": 1,
-    "order": 1,
-    "sets": 4,
-    "reps": 7,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Main compound press. Rest 120 sec."
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1501,
+    "fields": {
+      "template": 101,
+      "exercise": 1,
+      "order": 1,
+      "sets": 4,
+      "reps": 7,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Main compound press. Rest 120 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1502,
+    "fields": {
+      "template": 101,
+      "exercise": 6,
+      "order": 2,
+      "sets": 3,
+      "reps": 9,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Upper chest focus. Rest 90 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1503,
+    "fields": {
+      "template": 101,
+      "exercise": 30,
+      "order": 3,
+      "sets": 3,
+      "reps": 9,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Shoulder compound press. Rest 90 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1504,
+    "fields": {
+      "template": 101,
+      "exercise": 14,
+      "order": 4,
+      "sets": 3,
+      "reps": 11,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Chest isolation. Controlled reps. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1505,
+    "fields": {
+      "template": 101,
+      "exercise": 33,
+      "order": 5,
+      "sets": 3,
+      "reps": 13,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Side delt isolation. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1506,
+    "fields": {
+      "template": 101,
+      "exercise": 46,
+      "order": 6,
+      "sets": 3,
+      "reps": 11,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Triceps pushdowns. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1507,
+    "fields": {
+      "template": 101,
+      "exercise": 48,
+      "order": 7,
+      "sets": 3,
+      "reps": 13,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Triceps finisher. Long head focus. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1601,
+    "fields": {
+      "template": 103,
+      "exercise": 51,
+      "order": 1,
+      "sets": 4,
+      "reps": 6,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Main compound lift. Rest 2–3 min."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1602,
+    "fields": {
+      "template": 103,
+      "exercise": 52,
+      "order": 2,
+      "sets": 3,
+      "reps": 7,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Front squat for quad emphasis. Rest 2 min."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1603,
+    "fields": {
+      "template": 103,
+      "exercise": 54,
+      "order": 3,
+      "sets": 3,
+      "reps": 10,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Leg press quad builder. Rest 90 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1604,
+    "fields": {
+      "template": 103,
+      "exercise": 56,
+      "order": 4,
+      "sets": 3,
+      "reps": 9,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Bulgarian split squat. 8–10 reps each leg. Rest 90 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1605,
+    "fields": {
+      "template": 103,
+      "exercise": 55,
+      "order": 5,
+      "sets": 3,
+      "reps": 13,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Quad isolation. Controlled reps. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1606,
+    "fields": {
+      "template": 103,
+      "exercise": 63,
+      "order": 6,
+      "sets": 4,
+      "reps": 13,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Standing calf raises. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1701,
+    "fields": {
+      "template": 102,
+      "exercise": 25,
+      "order": 1,
+      "sets": 4,
+      "reps": 5,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 9,
+      "notes": "Main compound lift. Rest 2–3 min."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1702,
+    "fields": {
+      "template": 102,
+      "exercise": 17,
+      "order": 2,
+      "sets": 3,
+      "reps": 8,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Vertical pull movement. Rest 2 min."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1703,
+    "fields": {
+      "template": 102,
+      "exercise": 20,
+      "order": 3,
+      "sets": 3,
+      "reps": 9,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Horizontal rowing movement. Rest 90 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1704,
+    "fields": {
+      "template": 102,
+      "exercise": 19,
+      "order": 4,
+      "sets": 3,
+      "reps": 11,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Lat isolation exercise. Rest 90 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1705,
+    "fields": {
+      "template": 102,
+      "exercise": 36,
+      "order": 5,
+      "sets": 3,
+      "reps": 13,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Rear delt and upper back work. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1706,
+    "fields": {
+      "template": 102,
+      "exercise": 38,
+      "order": 6,
+      "sets": 3,
+      "reps": 10,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Barbell curls for biceps. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1707,
+    "fields": {
+      "template": 102,
+      "exercise": 40,
+      "order": 7,
+      "sets": 3,
+      "reps": 11,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Hammer curl finisher targeting biceps and forearms. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1801,
+    "fields": {
+      "template": 105,
+      "exercise": 1,
+      "order": 1,
+      "sets": 4,
+      "reps": 6,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Main pressing movement. Rest 2–3 min."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1802,
+    "fields": {
+      "template": 105,
+      "exercise": 17,
+      "order": 2,
+      "sets": 3,
+      "reps": 8,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Vertical pulling movement. Rest 2 min."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1803,
+    "fields": {
+      "template": 105,
+      "exercise": 22,
+      "order": 3,
+      "sets": 3,
+      "reps": 9,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Horizontal row for mid-back. Rest 90 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1804,
+    "fields": {
+      "template": 105,
+      "exercise": 30,
+      "order": 4,
+      "sets": 3,
+      "reps": 9,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 8,
+      "notes": "Shoulder pressing movement. Rest 90 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1805,
+    "fields": {
+      "template": 105,
+      "exercise": 14,
+      "order": 5,
+      "sets": 3,
+      "reps": 11,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Chest isolation movement. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1806,
+    "fields": {
+      "template": 105,
+      "exercise": 33,
+      "order": 6,
+      "sets": 3,
+      "reps": 13,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Side delt isolation. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1807,
+    "fields": {
+      "template": 105,
+      "exercise": 39,
+      "order": 7,
+      "sets": 3,
+      "reps": 11,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Dumbbell curls for biceps. Rest 60 sec."
+    }
+  },
+  {
+    "model": "main_app.workouttemplateitem",
+    "pk": 1808,
+    "fields": {
+      "template": 105,
+      "exercise": 46,
+      "order": 8,
+      "sets": 3,
+      "reps": 11,
+      "weight": null,
+      "weight_unit": null,
+      "duration_seconds": null,
+      "distance": null,
+      "rpe": 7,
+      "notes": "Tricep pushdowns to finish. Rest 60 sec."
+    }
   }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1502,
-  "fields": {
-    "template": 101,
-    "exercise": 6,
-    "order": 2,
-    "sets": 3,
-    "reps": 9,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Upper chest focus. Rest 90 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1503,
-  "fields": {
-    "template": 101,
-    "exercise": 30,
-    "order": 3,
-    "sets": 3,
-    "reps": 9,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Shoulder compound press. Rest 90 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1504,
-  "fields": {
-    "template": 101,
-    "exercise": 14,
-    "order": 4,
-    "sets": 3,
-    "reps": 11,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Chest isolation. Controlled reps. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1505,
-  "fields": {
-    "template": 101,
-    "exercise": 33,
-    "order": 5,
-    "sets": 3,
-    "reps": 13,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Side delt isolation. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1506,
-  "fields": {
-    "template": 101,
-    "exercise": 46,
-    "order": 6,
-    "sets": 3,
-    "reps": 11,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Triceps pushdowns. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1507,
-  "fields": {
-    "template": 101,
-    "exercise": 48,
-    "order": 7,
-    "sets": 3,
-    "reps": 13,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Triceps finisher. Long head focus. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1601,
-  "fields": {
-    "template": 103,
-    "exercise": 51,
-    "order": 1,
-    "sets": 4,
-    "reps": 6,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Main compound lift. Rest 2–3 min."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1602,
-  "fields": {
-    "template": 103,
-    "exercise": 52,
-    "order": 2,
-    "sets": 3,
-    "reps": 7,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Front squat for quad emphasis. Rest 2 min."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1603,
-  "fields": {
-    "template": 103,
-    "exercise": 54,
-    "order": 3,
-    "sets": 3,
-    "reps": 10,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Leg press quad builder. Rest 90 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1604,
-  "fields": {
-    "template": 103,
-    "exercise": 56,
-    "order": 4,
-    "sets": 3,
-    "reps": 9,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Bulgarian split squat. 8–10 reps each leg. Rest 90 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1605,
-  "fields": {
-    "template": 103,
-    "exercise": 55,
-    "order": 5,
-    "sets": 3,
-    "reps": 13,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Quad isolation. Controlled reps. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1606,
-  "fields": {
-    "template": 103,
-    "exercise": 63,
-    "order": 6,
-    "sets": 4,
-    "reps": 13,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Standing calf raises. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1701,
-  "fields": {
-    "template": 102,
-    "exercise": 25,
-    "order": 1,
-    "sets": 4,
-    "reps": 5,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 9,
-    "notes": "Main compound lift. Rest 2–3 min."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1702,
-  "fields": {
-    "template": 102,
-    "exercise": 17,
-    "order": 2,
-    "sets": 3,
-    "reps": 8,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Vertical pull movement. Rest 2 min."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1703,
-  "fields": {
-    "template": 102,
-    "exercise": 20,
-    "order": 3,
-    "sets": 3,
-    "reps": 9,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Horizontal rowing movement. Rest 90 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1704,
-  "fields": {
-    "template": 102,
-    "exercise": 19,
-    "order": 4,
-    "sets": 3,
-    "reps": 11,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Lat isolation exercise. Rest 90 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1705,
-  "fields": {
-    "template": 102,
-    "exercise": 36,
-    "order": 5,
-    "sets": 3,
-    "reps": 13,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Rear delt and upper back work. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1706,
-  "fields": {
-    "template": 102,
-    "exercise": 38,
-    "order": 6,
-    "sets": 3,
-    "reps": 10,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Barbell curls for biceps. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1707,
-  "fields": {
-    "template": 102,
-    "exercise": 40,
-    "order": 7,
-    "sets": 3,
-    "reps": 11,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Hammer curl finisher targeting biceps and forearms. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1801,
-  "fields": {
-    "template": 105,
-    "exercise": 1,
-    "order": 1,
-    "sets": 4,
-    "reps": 6,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Main pressing movement. Rest 2–3 min."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1802,
-  "fields": {
-    "template": 105,
-    "exercise": 17,
-    "order": 2,
-    "sets": 3,
-    "reps": 8,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Vertical pulling movement. Rest 2 min."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1803,
-  "fields": {
-    "template": 105,
-    "exercise": 22,
-    "order": 3,
-    "sets": 3,
-    "reps": 9,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Horizontal row for mid-back. Rest 90 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1804,
-  "fields": {
-    "template": 105,
-    "exercise": 30,
-    "order": 4,
-    "sets": 3,
-    "reps": 9,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 8,
-    "notes": "Shoulder pressing movement. Rest 90 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1805,
-  "fields": {
-    "template": 105,
-    "exercise": 14,
-    "order": 5,
-    "sets": 3,
-    "reps": 11,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Chest isolation movement. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1806,
-  "fields": {
-    "template": 105,
-    "exercise": 33,
-    "order": 6,
-    "sets": 3,
-    "reps": 13,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Side delt isolation. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1807,
-  "fields": {
-    "template": 105,
-    "exercise": 39,
-    "order": 7,
-    "sets": 3,
-    "reps": 11,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Dumbbell curls for biceps. Rest 60 sec."
-  }
-},
-{
-  "model": "main_app.workouttemplateitem",
-  "pk": 1808,
-  "fields": {
-    "template": 105,
-    "exercise": 46,
-    "order": 8,
-    "sets": 3,
-    "reps": 11,
-    "weight": null,
-    "weight_unit": null,
-    "duration_seconds": null,
-    "distance_meters": null,
-    "rpe": 7,
-    "notes": "Tricep pushdowns to finish. Rest 60 sec."
-  }
-}
 ]

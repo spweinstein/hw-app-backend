@@ -54,8 +54,8 @@ class WorkoutItemSerializer(serializers.ModelSerializer):
             "reps",
             "weight",
             "weight_unit",
-            "duration_seconds",
-            "distance_meters",
+            "duration",
+            "distance",
             "rpe",
             "notes",
         ]

@@ -58,9 +58,9 @@ class WorkoutTemplate(models.Model):
         help_text="If this template was copied from another template, reference it here.",
     )
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    duration_minutes = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+    duration = models.PositiveIntegerField()
 
     class Meta:
         unique_together = ("user", "title")
@@ -88,8 +88,11 @@ class WorkoutTemplateItem(models.Model):
     weight_unit = models.CharField(
         max_length=5, choices=(("lb", "lb"), ("kg", "kg")), null=True, blank=True
     )
-    duration_seconds = models.PositiveIntegerField(null=True, blank=True)
-    distance_meters = models.PositiveIntegerField(null=True, blank=True)
+    duration = models.PositiveIntegerField(null=True, blank=True)
+    distance = models.PositiveIntegerField(null=True, blank=True)
+    distance_unit = models.CharField(
+        max_length=5, choices=(("km", "km"), ("mi", "mi")), null=True, blank=True
+    )
     rpe = models.PositiveIntegerField(null=True, blank=True)  # 1–10
 
     notes = models.TextField(blank=True)
@@ -235,8 +238,11 @@ class WorkoutItem(models.Model):
     weight_unit = models.CharField(
         max_length=5, choices=(("lb", "lb"), ("kg", "kg")), null=True, blank=True
     )
-    duration_seconds = models.PositiveIntegerField(null=True, blank=True)
-    distance_meters = models.PositiveIntegerField(null=True, blank=True)
+    duration = models.PositiveIntegerField(null=True, blank=True)
+    distance = models.PositiveIntegerField(null=True, blank=True)
+    distance_unit = models.CharField(
+        max_length=5, choices=(("km", "km"), ("mi", "mi")), null=True, blank=True
+    )
     rpe = models.PositiveIntegerField(null=True, blank=True)  # 1–10
 
     notes = models.TextField(blank=True)

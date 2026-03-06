@@ -186,7 +186,7 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
             for pos, link in enumerate(ordered_links):
                 occurrence_index = cycle_idx * template_count + pos
                 slot_start = plan.start_dt + timedelta(days=occurrence_index * plan.interval)
-                slot_end = slot_start + timedelta(minutes=link.template.duration_minutes)
+                slot_end = slot_start + timedelta(minutes=link.template.duration)
                 candidate_slots.append((slot_start, slot_end, link))
 
         now = timezone.now()
@@ -219,8 +219,9 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
                             reps=item.reps,
                             weight=item.weight,
                             weight_unit=item.weight_unit,
-                            duration_seconds=item.duration_seconds,
-                            distance_meters=item.distance_meters,
+                            duration=item.duration,
+                            distance=item.distance,
+                            distance_unit=item.distance_unit,
                             rpe=item.rpe,
                             notes=item.notes,
                         )

@@ -14,6 +14,7 @@ def create_workout_from_template(modeladmin, request, queryset):
         user=request.user,
         title=template.title,
         start_dt=timezone.now(),  # required field
+        end_dt=timezone.now(),
         template=template,
     )
 
