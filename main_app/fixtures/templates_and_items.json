@@ -570,7 +570,7 @@
     "model": "main_app.workouttemplateitem",
     "pk": 1301,
     "fields": {
-      "template": 109,
+      "template": 104,
       "exercise": 26,
       "order": 1,
       "sets": 4,
