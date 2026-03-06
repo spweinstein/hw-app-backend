@@ -32,6 +32,17 @@
       "is_public": true
     }
   },
+    {
+    "model": "main_app.workoutplan",
+    "pk": 204,
+    "fields": {
+      "user": 1,
+      "title": "Full body upper/ full body lower",
+      "start_dt": "2026-03-09T00:00:00Z",
+      "interval": 1,
+      "is_public": true
+    }
+  },
   {
     "model": "main_app.workouttemplateplan",
     "pk": 3101,
@@ -203,21 +214,10 @@
     }
   },
   {
-    "model": "main_app.workoutplan",
-    "pk": 303,
-    "fields": {
-      "user": 1,
-      "title": "Full body upper/ full body lower",
-      "start_dt": "2026-03-09T00:00:00Z",
-      "interval": 1,
-      "is_public": true
-    }
-  },
-  {
     "model": "main_app.workouttemplateplan",
-    "pk": 3101,
+    "pk": 3401,
     "fields": {
-      "plan": 301,
+      "plan": 204,
       "template": 108,
       "order": 1,
       "time": "18:00:00"
@@ -225,9 +225,9 @@
   },
   {
     "model": "main_app.workouttemplateplan",
-    "pk": 3102,
+    "pk": 3402,
     "fields": {
-      "plan": 301,
+      "plan": 204,
       "template": 109,
       "order": 2,
       "time": "18:00:00"
@@ -235,9 +235,9 @@
   },
   {
     "model": "main_app.workouttemplateplan",
-    "pk": 3103,
+    "pk": 3403,
     "fields": {
-      "plan": 301,
+      "plan": 204,
       "template": 108,
       "order": 3,
       "time": "18:00:00"
@@ -245,9 +245,9 @@
   },
   {
     "model": "main_app.workouttemplateplan",
-    "pk": 3104,
+    "pk": 3404,
     "fields": {
-      "plan": 301,
+      "plan": 204,
       "template": 109,
       "order": 4,
       "time": "18:00:00"
