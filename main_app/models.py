@@ -115,6 +115,7 @@ class WorkoutPlan(models.Model):
     title = models.CharField(max_length=140)
     start_dt = models.DateTimeField()
     interval = models.PositiveIntegerField(default=1)
+    cycles = models.PositiveIntegerField(default=1)
     is_public = models.BooleanField(default=False)
 
     # M2M to templates (composition)

@@ -19,6 +19,7 @@ from django.utils import timezone
 from rest_framework.decorators import action
 from rest_framework import status
 from django.core.exceptions import ValidationError as DjangoValidationError
+from rest_framework.exceptions import PermissionDenied
 
 class ConflictError(Exception):
     def __init__(self, conflicts):
@@ -165,6 +166,18 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
     serializer_class = WorkoutPlanSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnlyPublic]
 
+    def get_permissions(self):
+        """
+        Override to allow generate action for public plans.
+        """
+        if self.action == 'generate':
+            # For generate action, only require authentication
+            # We'll check plan ownership/public status in the method itself
+            return [permissions.IsAuthenticated()]
+        # For other actions, use the default permissions
+        return super().get_permissions()
+
+
     def get_queryset(self):
         scope = self.request.query_params.get("scope", "all")  # default: "all"
         
@@ -181,7 +194,10 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=["post"])
     def generate(self, request, pk=None):
         plan = self.get_object()
-        cycles = int(request.data.get("cycles", 1))
+        if not plan.is_public and plan.user != request.user:
+            raise PermissionDenied("You can only generate workouts from your own plans or public plans.")
+        
+        cycles = plan.cycles or 1 
         if cycles < 1:
             raise ValidationError("cycles must be >= 1")
 
