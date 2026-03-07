@@ -131,11 +131,19 @@ class WorkoutTemplateViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnlyPublic]
 
     def get_queryset(self):
-        # Owners can see their templates; everyone can see public templates
-        return WorkoutTemplate.objects.filter(
-            (models.Q(user=self.request.user) | models.Q(is_public=True))
-        ).distinct().order_by("-updated_at")
-
+        scope = self.request.query_params.get("scope", "all")  # default: "all"
+        
+        if scope == "public":
+            # Only public templates
+            return WorkoutTemplate.objects.filter(is_public=True).order_by("-updated_at")
+        elif scope == "user":
+            # Only user's templates
+            return WorkoutTemplate.objects.filter(user=self.request.user).order_by("-updated_at")
+        else:
+            # Default: user's templates OR public templates
+            return WorkoutTemplate.objects.filter(
+                (models.Q(user=self.request.user) | models.Q(is_public=True))
+            ).distinct().order_by("-updated_at")
 
 class WorkoutTemplateItemViewSet(viewsets.ModelViewSet):
     serializer_class = WorkoutTemplateItemSerializer
@@ -158,8 +166,17 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnlyPublic]
 
     def get_queryset(self):
-        from django.db.models import Q
-        return WorkoutPlan.objects.filter(Q(user=self.request.user) | Q(is_public=True)).distinct().order_by("-updated_at")
+        scope = self.request.query_params.get("scope", "all")  # default: "all"
+        
+        if scope == "public":
+            # Only public plans
+            return WorkoutPlan.objects.filter(is_public=True).order_by("-updated_at")
+        elif scope == "user":
+            # Only user's plans
+            return WorkoutPlan.objects.filter(user=self.request.user).order_by("-updated_at")
+        else:
+            # Default: user's plans OR public plans
+            return WorkoutPlan.objects.filter(Q(user=self.request.user) | Q(is_public=True)).distinct().order_by("-updated_at")
 
     @action(detail=True, methods=["post"])
     def generate(self, request, pk=None):
