@@ -139,3 +139,35 @@ Workout plans generate dated workouts in a user's calendar.
     └── /api/workout-template-plans/
 ```
 ### Authentication
+Backend → identity verification
+
+The API uses JWT authentication via `djangorestframework-simplejwt`.
+
+### Token Generation
+
+Users receive tokens when registering or logging in.
+
+POST /users/register/
+POST /users/login/
+
+The server returns:
+
+{
+  refresh,
+  access,
+  user
+}
+
+### Authenticated Requests
+
+Protected endpoints require a JWT access token.
+
+Requests must include the header:
+
+Authorization: Bearer <access_token>
+
+### Permissions
+
+Most API endpoints require authentication.
+
+User-specific resources (profiles, weight logs) are filtered to the authenticated user to ensure users can only access their own data.
