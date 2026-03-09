@@ -7,7 +7,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Lower bar to mid chest and press to full lockout.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/ysUTNll8JQ8",
       "muscle_groups": [1, 5, 26, 27]
     }
   },
@@ -19,7 +19,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Press bar upward on incline bench targeting upper chest.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/SrqOu55lrYU",
       "muscle_groups": [5, 11, 26]
     }
   },
@@ -31,7 +31,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Press bar from lower chest angle on decline bench.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/LfyQBUKR8SE",
       "muscle_groups": [3, 5, 12, 16]
     }
   },
@@ -43,7 +43,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Use narrow grip to emphasize triceps during press.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/UYJsFzqdgK4",
       "muscle_groups": [5, 23, 26, 27, 28]
     }
   },
@@ -55,7 +55,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Press dumbbells from chest with full range of motion.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/Y_7aHqXeCfQ",
       "muscle_groups": [1, 5, 16, 26]
     }
   },
@@ -67,7 +67,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Press dumbbells upward on incline bench.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/hChjZQhX1Ls",
       "muscle_groups": [5, 11, 26]
     }
   },
@@ -79,7 +79,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Press dumbbells on decline bench targeting lower chest.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/Pf1nDoqx_1A",
       "muscle_groups": [5, 12, 16]
     }
   },
@@ -91,7 +91,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Lower dumbbells wide with slight elbow bend and squeeze chest at top.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/eozdVDA78K0",
       "muscle_groups": [1]
     }
   },
@@ -103,7 +103,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Perform fly movement on incline bench.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/idAvu2HvqSQ",
       "muscle_groups": [11]
     }
   },
@@ -115,7 +115,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Press machine handles forward until arms are extended.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/xUm0BiZCWlQ",
       "muscle_groups": [1, 5, 16]
     }
   },
@@ -127,7 +127,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Press weight forward in controlled motion.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/zgP-UCKGe24",
       "muscle_groups": [1, 5, 16]
     }
   },
@@ -139,7 +139,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Bring arms together in hugging motion squeezing chest.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/H4mVGHaK2f4",
       "muscle_groups": [1]
     }
   },
@@ -151,7 +151,7 @@
       "exercise_type": "strength",
       "equipment": "cable",
       "instructions": "Press cable handles forward with control.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/FVWJglwid4I",
       "muscle_groups": [1, 5]
     }
   },
@@ -163,7 +163,7 @@
       "exercise_type": "strength",
       "equipment": "cable",
       "instructions": "Bring cable handles together in arc motion.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/8Um35Es-ROE",
       "muscle_groups": [1]
     }
   },
@@ -175,7 +175,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Lower body to floor and press back up maintaining straight body line.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/mECzqUIDWfU",
       "muscle_groups": [1, 5, 10, 16, 26]
     }
   },
@@ -187,7 +187,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Lean forward while dipping to emphasize chest.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/sM6XUdt1rm4",
       "muscle_groups": [1, 5, 16]
     }
   },
@@ -199,7 +199,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Pull body upward until chin clears bar.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/ScGObDq1DSo",
       "muscle_groups": [2, 4, 10, 13, 15, 21, 29]
     }
   },
@@ -211,7 +211,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Underhand grip pull-up focusing on biceps.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/Ln3gAdHr8MM",
       "muscle_groups": [2, 4, 10, 13, 29]
     }
   },
@@ -223,7 +223,7 @@
       "exercise_type": "strength",
       "equipment": "cable",
       "instructions": "Pull bar to upper chest while squeezing lats.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/CAwf7n6Luuc",
       "muscle_groups": [2, 13]
     }
   },
@@ -235,7 +235,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Row bar toward lower chest with flat back.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/FWJR5Ve8bnQ",
       "muscle_groups": [2, 13, 14, 15]
     }
   },
@@ -247,7 +247,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Row dumbbell toward hip while stabilizing torso.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/dFzUjzfih7k",
       "muscle_groups": [2, 13, 14]
     }
   },
@@ -259,7 +259,7 @@
       "exercise_type": "strength",
       "equipment": "cable",
       "instructions": "Pull handle toward torso squeezing shoulder blades.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/vwHG9Jfu4sw",
       "muscle_groups": [2, 13, 14, 29]
     }
   },
@@ -271,7 +271,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Row bar toward chest keeping back neutral.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/j3Igk5nyZE4",
       "muscle_groups": [2, 13, 14, 15]
     }
   },
@@ -283,7 +283,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Row handles toward torso while chest stays supported.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/vmX58YYK3-8",
       "muscle_groups": [2, 13, 14, 15]
     }
   },
@@ -295,7 +295,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Lift bar from floor by extending hips and knees.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/r4MzxtBKyNE",
       "muscle_groups": [8, 9, 10, 21]
     }
   },
@@ -307,7 +307,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Hinge at hips lowering bar along legs maintaining slight knee bend.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/3VXmecChYYM",
       "muscle_groups": [7, 8]
     }
   },
@@ -319,7 +319,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Lift bar from rack height focusing on lockout.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/Y99s0dNWpUw",
       "muscle_groups": [2, 8, 13, 14, 21]
     }
   },
@@ -331,7 +331,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Extend spine from flexed position squeezing lower back.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/ph3pddpKzzw",
       "muscle_groups": [2, 7, 8, 10]
     }
   },
@@ -343,7 +343,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Hinge forward at hips with bar on back maintaining neutral spine.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/5Xj6XUa77qc",
       "muscle_groups": [8, 9, 10, 21]
     }
   },
@@ -355,7 +355,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Press bar overhead from shoulder level.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/KP1sYz2VICk",
       "muscle_groups": [3, 16, 17, 26]
     }
   },
@@ -367,7 +367,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Rotate palms while pressing dumbbells overhead.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/Tux8PGVa9wQ",
       "muscle_groups": [3, 15, 16, 17]
     }
   },
@@ -379,7 +379,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Raise weight straight in front to shoulder height.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/t7fuZ0KhDA",
       "muscle_groups": [3, 16]
     }
   },
@@ -391,7 +391,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Raise arms to sides to shoulder height.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/PzsMitRdI_8",
       "muscle_groups": [3, 17]
     }
   },
@@ -403,7 +403,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Pull bar upward toward chin leading with elbows.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/K0dYqPCaO14",
       "muscle_groups": [3, 14, 17]
     }
   },
@@ -415,7 +415,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Raise arms outward while bent over targeting rear delts.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/EA7u4Q_8HQ0",
       "muscle_groups": [3, 15]
     }
   },
@@ -427,7 +427,7 @@
       "exercise_type": "strength",
       "equipment": "cable",
       "instructions": "Pull rope toward face keeping elbows high.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/V8dZ3pyiCBo",
       "muscle_groups": [3, 14, 15]
     }
   },
@@ -439,7 +439,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Pull handles outward targeting rear delts.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/dC7jhEk-29A",
       "muscle_groups": [3, 15]
     }
   },
@@ -451,7 +451,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Curl bar upward keeping elbows fixed.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/LY1V6UbRHFM",
       "muscle_groups": [4, 18, 22, 23, 24]
     }
   },
@@ -463,7 +463,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Curl dumbbells upward with controlled motion.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/XE_pHwbst04",
       "muscle_groups": [4, 18, 22, 23, 24, 25]
     }
   },
@@ -475,7 +475,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Curl dumbbells with neutral grip.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/8XLxfXROrTo",
       "muscle_groups": [4, 18, 22, 24]
     }
   },
@@ -487,7 +487,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Curl weight using preacher bench for isolation.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/3mtXqrkbEfI",
       "muscle_groups": [4, 22, 23]
     }
   },
@@ -499,7 +499,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Curl dumbbell while seated focusing on peak contraction.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/Jvj2wV0vOYU",
       "muscle_groups": [4, 18, 22, 23]
     }
   },
@@ -511,7 +511,7 @@
       "exercise_type": "strength",
       "equipment": "cable",
       "instructions": "Curl cable handle upward keeping elbows stationary.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/2MUEL4nL6hA",
       "muscle_groups": [4, 22, 23]
     }
   },
@@ -523,7 +523,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Curl EZ bar upward with controlled motion.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/zG2xJ0Q5QtI",
       "muscle_groups": [4, 22, 23]
     }
   },
@@ -535,7 +535,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Perform curls seated on incline bench allowing full stretch.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/HhHHBj3qTJ4",
       "muscle_groups": [4, 22, 23]
     }
   },
@@ -547,7 +547,7 @@
       "exercise_type": "strength",
       "equipment": "cable",
       "instructions": "Extend elbows fully pushing cable downward.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/-zLyUAo1gMw",
       "muscle_groups": [5, 26, 27, 28]
     }
   },
@@ -559,7 +559,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Lower bar toward forehead then extend arms fully.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/S0fmDR60X-o",
       "muscle_groups": [5, 26, 27, 28]
     }
   },
@@ -571,7 +571,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Lower weight behind head and extend arms overhead.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/-Vyt2QdsR7E",
       "muscle_groups": [5, 26, 27, 28]
     }
   },
@@ -583,7 +583,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Keep torso upright to emphasize triceps.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/c3ZGl4pAwZ4",
       "muscle_groups": [5, 12, 16, 26, 27, 28]
     }
   },
@@ -595,7 +595,7 @@
       "exercise_type": "strength",
       "equipment": "cable",
       "instructions": "Extend arm backward fully squeezing triceps.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/ifP5sFBT7IE",
       "muscle_groups": [7, 8]
     }
   },
@@ -607,7 +607,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Descend to parallel and drive upward through heels.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/aOzrA4FgnM0",
       "muscle_groups": [6, 7, 8, 10]
     }
   },
@@ -619,7 +619,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Keep torso upright while squatting.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/nmUof3vszxM",
       "muscle_groups": [6, 8, 10]
     }
   },
@@ -631,7 +631,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Lower sled and press upward targeting quads.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/0tn5K9NlCfo",
       "muscle_groups": [6]
     }
   },
@@ -643,7 +643,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Press platform upward extending legs.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/K5n2vg3oZa4",
       "muscle_groups": [6, 8]
     }
   },
@@ -655,7 +655,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Extend knees fully focusing on quads.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/YyvSfVjQeL0",
       "muscle_groups": [6]
     }
   },
@@ -667,7 +667,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Lower rear-foot elevated squat maintaining balance.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/SkNsa3eBwLA",
       "muscle_groups": [6, 8]
     }
   },
@@ -679,7 +679,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Step forward and lower until knees reach 90 degrees.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/D7KaRcUTQeE",
       "muscle_groups": [6, 8]
     }
   },
@@ -691,7 +691,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Curl heels toward glutes.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/jxctD6fL_FQ",
       "muscle_groups": [7]
     }
   },
@@ -703,7 +703,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Curl weight downward engaging hamstrings.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/t9sTSr-JYSs",
       "muscle_groups": [7]
     }
   },
@@ -715,7 +715,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Lower body forward slowly controlling hamstrings.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/Lgibr8od0yA",
       "muscle_groups": [7]
     }
   },
@@ -727,7 +727,7 @@
       "exercise_type": "strength",
       "equipment": "barbell",
       "instructions": "Drive hips upward squeezing glutes.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/pUdIL5x0fWg",
       "muscle_groups": [8]
     }
   },
@@ -739,7 +739,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Raise hips from floor squeezing glutes.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/OUgsJ8-Vi0E",
       "muscle_groups": [8]
     }
   },
@@ -751,7 +751,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Raise heels upward fully extending ankles.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/SVtg-1loH4c",
       "muscle_groups": [9]
     }
   },
@@ -763,7 +763,7 @@
       "exercise_type": "strength",
       "equipment": "machine",
       "instructions": "Raise heels while seated targeting soleus.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/6O5hh1rBtx8",
       "muscle_groups": [9]
     }
   },
@@ -775,7 +775,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Lift shoulders off floor engaging abs.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/MKmrqcoCZ-M",
       "muscle_groups": [10]
     }
   },
@@ -787,7 +787,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Lift torso fully to seated position.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/jDwoBqPH0jk",
       "muscle_groups": [10, 19, 20]
     }
   },
@@ -799,7 +799,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Raise legs while hanging from bar.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/hdng3Nm1x_E",
       "muscle_groups": [10, 19]
     }
   },
@@ -811,7 +811,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Hold forearm plank maintaining neutral spine.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/pSHjTRCQxIw",
       "muscle_groups": [10, 19]
     }
   },
@@ -823,7 +823,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Rotate torso side to side engaging obliques.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/wkD8rjkodUI",
       "muscle_groups": [10, 19, 20]
     }
   },
@@ -835,7 +835,7 @@
       "exercise_type": "cardio",
       "equipment": "machine",
       "instructions": "Run at steady pace or intervals.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/K6I24WgiiPw",
       "muscle_groups": [7, 10]
     }
   },
@@ -847,7 +847,7 @@
       "exercise_type": "cardio",
       "equipment": "machine",
       "instructions": "Walk at incline for increased intensity.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/T0U0yr26S20",
       "muscle_groups": [7, 8, 9]
     }
   },
@@ -859,7 +859,7 @@
       "exercise_type": "cardio",
       "equipment": "machine",
       "instructions": "Climb stairs continuously at set resistance.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/xSB39wbMz4w",
       "muscle_groups": [6, 8]
     }
   },
@@ -871,7 +871,7 @@
       "exercise_type": "cardio",
       "equipment": "machine",
       "instructions": "Row with full body extension and contraction.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/6_eLpWiNijE",
       "muscle_groups": [6, 7, 10]
     }
   },
@@ -883,7 +883,7 @@
       "exercise_type": "cardio",
       "equipment": "machine",
       "instructions": "Pedal continuously maintaining cadence.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/NwwDBARCGgo",
       "muscle_groups": [7, 8, 9]
     }
   },
@@ -895,7 +895,7 @@
       "exercise_type": "cardio",
       "equipment": "bodyweight",
       "instructions": "Jump continuously rotating rope under feet.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/vEJ7XbbAMAg",
       "muscle_groups": [6, 7, 8, 9]
     }
   },
@@ -907,7 +907,7 @@
       "exercise_type": "cardio",
       "equipment": "machine",
       "instructions": "Drive sled forward with powerful strides.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/9lXw0D3dxRQ",
       "muscle_groups": [6, 7, 8]
     }
   },
@@ -919,7 +919,7 @@
       "exercise_type": "strength",
       "equipment": "kettlebell",
       "instructions": "Hinge hips explosively swinging kettlebell to chest height.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/YSxHifyI6s8",
       "muscle_groups": [8, 9, 21]
     }
   },
@@ -931,7 +931,7 @@
       "exercise_type": "cardio",
       "equipment": "bodyweight",
       "instructions": "Create waves with ropes using full body power.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/pQb2xIGioyQ",
       "muscle_groups": [2, 3, 4, 5, 10]
     }
   },
@@ -943,7 +943,7 @@
       "exercise_type": "strength",
       "equipment": "dumbbell",
       "instructions": "Walk while holding heavy weights at sides.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/NH7Xv-7NQNQ",
       "muscle_groups": [3, 6, 7, 10, 18]
     }
   },
@@ -955,7 +955,7 @@
       "exercise_type": "strength",
       "equipment": "bodyweight",
       "instructions": "Jump explosively onto box landing softly.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/TPJhsE0QeD8",
       "muscle_groups": [6, 7, 8, 9]
     }
   },
@@ -967,7 +967,7 @@
       "exercise_type": "strength",
       "equipment": "medicine_ball",
       "instructions": "Lift ball overhead and slam to ground forcefully.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/YFORkljMrEQ",
       "muscle_groups": [2, 3, 4, 5, 10]
     }
   },
@@ -979,7 +979,7 @@
       "exercise_type": "cardio",
       "equipment": "bodyweight",
       "instructions": "Perform quick foot drills through ladder.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/66oUAhI0nQQ",
       "muscle_groups": [6, 7, 8, 9, 19]
     }
   },
@@ -991,7 +991,7 @@
       "exercise_type": "cardio",
       "equipment": "bodyweight",
       "instructions": "Run short distances at maximum speed.",
-      "video_url": "",
+      "video_url": "https://www.youtube.com/embed/6m_fjNhRhkY",
       "muscle_groups": [6, 7, 8, 9]
     }
   }
