@@ -11,8 +11,12 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv(override=True)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+import dj_database_url  
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Adjust the port if your frontend runs on a different one
@@ -27,7 +31,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a^hyu87=6_@rw-mwu&@6bburo6ib!7=5sj03o-!&9##j9kq0%m'
+# SECRET_KEY = 'django-insecure-a^hyu87=6_@rw-mwu&@6bburo6ib!7=5sj03o-!&9##j9kq0%m'
+# NEW
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "dev-insecure-key")  # NEW
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"     # NEW
+
+ALLOWED_HOSTS = os.getenv(                                      # NEW
+    "DJANGO_ALLOWED_HOSTS",
+    ".up.railway.app,localhost,127.0.0.1"
+).split(",")
+
+CSRF_TRUSTED_ORIGINS = os.getenv(                               # NEW
+    "CSRF_TRUSTED_ORIGINS",
+    "https://*.up.railway.app"
+).split(",")
 
 from datetime import timedelta
 
@@ -47,10 +64,6 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 
 # Application definition
@@ -75,14 +88,15 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'hw_app.urls'
@@ -108,13 +122,24 @@ WSGI_APPLICATION = 'hw_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+DATABASE_URL = os.getenv("DATABASE_URL")
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hwdb',
-    }
+    "default": dj_database_url.parse(
+        DATABASE_URL,
+        conn_max_age=600,
+        ssl_require=False,  # set True if your host requires SSL (e.g. many cloud DBs)
+    )
 }
 
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"  # NEW
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",  # NEW
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

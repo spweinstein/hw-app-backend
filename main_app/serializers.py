@@ -82,6 +82,7 @@ class WorkoutItemSerializer(serializers.ModelSerializer):
             "rpe",
             "notes",
         ]
+        
         read_only_fields = ["workout"]
 
 

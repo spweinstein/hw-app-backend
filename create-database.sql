@@ -2,4 +2,4 @@ CREATE DATABASE hwdb;
 
 CREATE USER hwdb_admin WITH PASSWORD 'password';
 
-GRANT ALL PRIVILEGES ON DATABASE catcollector TO hwdb_admin;
+GRANT ALL PRIVILEGES ON DATABASE hwdb TO hwdb_admin;
