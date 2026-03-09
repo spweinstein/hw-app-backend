@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets, permissions, generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import ExerciseSerializer, MuscleGroupSerializer, UserSerializer, WorkoutSerializer, WorkoutItemSerializer, WorkoutTemplateSerializer, WorkoutTemplateItemSerializer, WorkoutPlanSerializer, WorkoutTemplatePlanSerializer
-from .models import Exercise, MuscleGroup, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem, WorkoutPlan, WorkoutTemplatePlan
+from .serializers import ExerciseSerializer, MuscleGroupSerializer, UserSerializer, WorkoutSerializer, WorkoutItemSerializer, WorkoutTemplateSerializer, WorkoutTemplateItemSerializer, WorkoutPlanSerializer, WorkoutTemplatePlanSerializer, ProfileSerializer, WeightLogSerializer
+from .models import Exercise, MuscleGroup, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem, WorkoutPlan, WorkoutTemplatePlan, Profile, WeightLog
 
 
 from django.contrib.auth.models import User
@@ -82,7 +82,32 @@ class IsOwnerOrReadOnlyPublic(permissions.BasePermission):
                 return True
             return getattr(obj, "user_id", None) == getattr(request.user, "id", None)
         return getattr(obj, "user_id", None) == getattr(request.user, "id", None)
+    
+class ProfileViewSet(viewsets.ModelViewSet):
+    serializer_class = ProfileSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        # Limit profiles to the authenticated user
+        return Profile.objects.filter(user=self.request.user)
+
+    def get_object(self):
+        # Always return (and if needed, create) the profile for the current user,
+        # so frontend calls like /api/profiles/<userId>/ work even if the profile
+        # doesn't yet exist.
+        profile, _ = Profile.objects.get_or_create(user=self.request.user)
+        return profile
+
+
+class WeightLogViewSet(viewsets.ModelViewSet):
+    serializer_class = WeightLogSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return WeightLog.objects.filter(user=self.request.user).order_by("date")
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class MuscleGroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = MuscleGroup.objects.all().order_by("name")

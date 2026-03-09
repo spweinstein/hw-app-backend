@@ -2,9 +2,35 @@ from django.db import models
 from django.conf import settings
 from django.db.models import Q
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 # Create your models here.
 
+
+class Profile(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="profile",
+    )
+    
+    height = models.PositiveIntegerField(null=True, blank=True)
+    def __str__(self):
+        return f"Profile for {self.user.username}"
+    
+class WeightLog(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="weight_logs",
+    )
+    weight = models.DecimalField(max_digits=5, decimal_places=1) 
+    date = models.DateField()
+    class Meta:
+        ordering = ["date"]
+    def __str__(self):
+        return f"{self.user.username} - {self.weight} on {self.date}"
+    
 class MuscleGroup(models.Model):
     name = models.CharField(max_length=80, unique=True)
     description = models.TextField(blank=True)

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import MuscleGroupViewSet, ExerciseViewSet, WorkoutViewSet, WorkoutItemViewSet, WorkoutTemplateViewSet, WorkoutTemplateItemViewSet, WorkoutPlanViewSet, WorkoutTemplatePlanViewSet, CreateUserView, LoginView, VerifyUserView
+from .views import MuscleGroupViewSet, ExerciseViewSet, WorkoutViewSet, WorkoutItemViewSet, WorkoutTemplateViewSet, WorkoutTemplateItemViewSet, WorkoutPlanViewSet, WorkoutTemplatePlanViewSet, CreateUserView, LoginView, VerifyUserView, WeightLogViewSet, ProfileViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -11,6 +11,8 @@ router.register("workout-templates", WorkoutTemplateViewSet, basename="workout-t
 router.register("workout-template-items", WorkoutTemplateItemViewSet, basename="workout-template-item")
 router.register("workout-plans", WorkoutPlanViewSet, basename="workout-plan")
 router.register("workout-template-plans", WorkoutTemplatePlanViewSet, basename="workout-template-plan")
+router.register("profiles", ProfileViewSet, basename="profile")
+router.register("weight-logs", WeightLogViewSet, basename="weight-log")
 
 urlpatterns = [
   path('api/', include(router.urls)),

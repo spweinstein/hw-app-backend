@@ -1,5 +1,16 @@
 from rest_framework import serializers
-from .models import MuscleGroup, Exercise, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem, WorkoutPlan, WorkoutTemplatePlan
+from .models import (
+    MuscleGroup,
+    Exercise,
+    Workout,
+    WorkoutItem,
+    WorkoutTemplate,
+    WorkoutTemplateItem,
+    WorkoutPlan,
+    WorkoutTemplatePlan,
+    Profile,
+    WeightLog,
+)
 from django.contrib.auth.models import User
 from django.db import transaction
 
@@ -18,6 +29,18 @@ class UserSerializer(serializers.ModelSerializer):
       )
       
       return user
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ["id", "height"]
+
+
+class WeightLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WeightLog
+        fields = ["id", "user", "weight", "date"]
+
 
 class MuscleGroupSerializer(serializers.ModelSerializer):
     class Meta:
