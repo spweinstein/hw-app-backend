@@ -38,7 +38,7 @@ DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"     # NEW
 
 ALLOWED_HOSTS = os.getenv(                                      # NEW
     "DJANGO_ALLOWED_HOSTS",
-    ".up.railway.app,localhost,127.0.0.1"
+    "hw-app-backend-production.up.railway.app,localhost,127.0.0.1"
 ).split(",")
 
 CSRF_TRUSTED_ORIGINS = os.getenv(                               # NEW
