@@ -165,8 +165,8 @@ class WorkoutTemplatePlan(models.Model):
     """
     Through table connecting WorkoutPlans <-> WorkoutTemplates.
     """
-    plan = models.ForeignKey(WorkoutPlan, on_delete=models.CASCADE)
-    template = models.ForeignKey(WorkoutTemplate, on_delete=models.CASCADE)
+    plan = models.ForeignKey(WorkoutPlan, on_delete=models.CASCADE, related_name="template_links")
+    template = models.ForeignKey(WorkoutTemplate, on_delete=models.CASCADE, related_name="plan_links")
     order = models.PositiveIntegerField(default=0)
     time = models.TimeField()
 

@@ -6,7 +6,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import ExerciseSerializer, MuscleGroupSerializer, UserSerializer, WorkoutSerializer, WorkoutItemSerializer, WorkoutTemplateSerializer, WorkoutTemplateItemSerializer, WorkoutPlanSerializer, WorkoutTemplatePlanSerializer, ProfileSerializer, WeightLogSerializer
 from .models import Exercise, MuscleGroup, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem, WorkoutPlan, WorkoutTemplatePlan, Profile, WeightLog
 
-
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.utils.dateparse import parse_datetime
@@ -14,7 +13,7 @@ from django.db import models
 
 from datetime import timedelta
 from django.db import transaction
-from django.db.models import Q
+from django.db.models import Q, Prefetch
 from django.utils import timezone
 from rest_framework.decorators import action
 from rest_framework import status
@@ -204,17 +203,29 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
 
 
     def get_queryset(self):
-        scope = self.request.query_params.get("scope", "all")  # default: "all"
-        
+        # CRITICAL: Prefetch with explicit ordering to ensure correct order
+        ordered_links = Prefetch(
+            "template_links",
+            queryset=WorkoutTemplatePlan.objects
+                .select_related("template")
+                .order_by("order", "id"),
+        )
+
+        scope = self.request.query_params.get("scope", "all")
+
+        base_qs = WorkoutPlan.objects.prefetch_related(ordered_links)
+
         if scope == "public":
-            # Only public plans
-            return WorkoutPlan.objects.filter(is_public=True).order_by("-updated_at")
+            return base_qs.filter(is_public=True).order_by("-updated_at")
         elif scope == "user":
-            # Only user's plans
-            return WorkoutPlan.objects.filter(user=self.request.user).order_by("-updated_at")
+            return base_qs.filter(user=self.request.user).order_by("-updated_at")
         else:
-            # Default: user's plans OR public plans
-            return WorkoutPlan.objects.filter(Q(user=self.request.user) | Q(is_public=True)).distinct().order_by("-updated_at")
+            return (
+                base_qs
+                .filter(Q(user=self.request.user) | Q(is_public=True))
+                .distinct()
+                .order_by("-updated_at")
+            )
 
     @action(detail=True, methods=["post"])
     def generate(self, request, pk=None):
@@ -310,9 +321,32 @@ class WorkoutTemplatePlanViewSet(viewsets.ModelViewSet):
     serializer_class = WorkoutTemplatePlanSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        return WorkoutTemplatePlan.objects.filter(plan__user=self.request.user).order_by("order", "id")
+def get_queryset(self):
+    # Prefetch template items to avoid N+1 queries
+    ordered_links = Prefetch(
+        "template_links",
+        queryset=WorkoutTemplatePlan.objects
+            .select_related("template")
+            .prefetch_related("template__items__exercise")  # Add this
+            .order_by("order", "id"),
+    )
 
+    scope = self.request.query_params.get("scope", "all")
+
+    base_qs = WorkoutPlan.objects.prefetch_related(ordered_links)
+
+    if scope == "public":
+        return base_qs.filter(is_public=True).order_by("-updated_at")
+    elif scope == "user":
+        return base_qs.filter(user=self.request.user).order_by("-updated_at")
+    else:
+        return (
+            base_qs
+            .filter(Q(user=self.request.user) | Q(is_public=True))
+            .distinct()
+            .order_by("-updated_at")
+        )
+        
     def perform_create(self, serializer):
         plan = serializer.validated_data["plan"]
         template = serializer.validated_data["template"]

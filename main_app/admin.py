@@ -42,6 +42,8 @@ class WorkoutAdmin(admin.ModelAdmin):
 class WorkoutTemplateItemInline(admin.TabularInline):
     model = WorkoutTemplateItem
     extra = 1  # Number of empty forms to display for adding new items
+    ordering = ['order', 'id']
+    fk_name = 'template'
 
 class WorkoutTemplateAdmin(admin.ModelAdmin):
     inlines = [WorkoutTemplateItemInline]
