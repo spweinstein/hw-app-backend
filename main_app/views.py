@@ -155,20 +155,98 @@ class WorkoutTemplateViewSet(viewsets.ModelViewSet):
     serializer_class = WorkoutTemplateSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnlyPublic]
 
+    def get_permissions(self):
+        # Schedule creates a workout for the current user from any template they can read
+        # (own or public); IsOwnerOrReadOnlyPublic would block POST on others' templates.
+        if getattr(self, "action", None) == "schedule":
+            return [permissions.IsAuthenticated()]
+        return super().get_permissions()
+
     def get_queryset(self):
         scope = self.request.query_params.get("scope", "all")  # default: "all"
-        
+
         if scope == "public":
-            # Only public templates
             return WorkoutTemplate.objects.filter(is_public=True).order_by("-updated_at")
         elif scope == "user":
-            # Only user's templates
             return WorkoutTemplate.objects.filter(user=self.request.user).order_by("-updated_at")
         else:
-            # Default: user's templates OR public templates
             return WorkoutTemplate.objects.filter(
                 (models.Q(user=self.request.user) | models.Q(is_public=True))
             ).distinct().order_by("-updated_at")
+
+    @action(detail=True, methods=["post"])
+    def schedule(self, request, pk=None):
+        template = self.get_object()
+        start_raw = request.data.get("start_dt")
+        if not start_raw:
+            raise ValidationError({"start_dt": "This field is required."})
+        start_dt = parse_datetime(str(start_raw).strip())
+        if start_dt is None:
+            raise ValidationError({"start_dt": "Invalid datetime. Use ISO 8601 format."})
+        if timezone.is_naive(start_dt):
+            start_dt = timezone.make_aware(
+                start_dt, timezone.get_current_timezone()
+            )
+
+        end_dt = start_dt + timedelta(minutes=template.duration)
+
+        try:
+            with transaction.atomic():
+                workout = Workout.objects.create(
+                    user=request.user,
+                    template=template,
+                    title=template.title,
+                    start_dt=start_dt,
+                    end_dt=end_dt,
+                    status=Workout.Status.PLANNED,
+                    notes="",
+                )
+                template_items = list(
+                    template.items.select_related("exercise").order_by("order", "id")
+                )
+                if template_items:
+                    WorkoutItem.objects.bulk_create(
+                        [
+                            WorkoutItem(
+                                workout=workout,
+                                exercise=ti.exercise,
+                                order=ti.order,
+                                sets=ti.sets,
+                                reps=ti.reps,
+                                weight=ti.weight,
+                                weight_unit=ti.weight_unit,
+                                duration=ti.duration,
+                                distance=ti.distance,
+                                distance_unit=ti.distance_unit,
+                                rpe=ti.rpe,
+                                notes=ti.notes,
+                            )
+                            for ti in template_items
+                        ]
+                    )
+        except DjangoValidationError as e:
+            return Response(
+                {
+                    "detail": "This workout conflicts with an existing calendar workout.",
+                    "errors": e.messages,
+                },
+                status=status.HTTP_409_CONFLICT,
+            )
+
+        workout = (
+            Workout.objects.filter(pk=workout.pk)
+            .prefetch_related(
+                Prefetch(
+                    "items",
+                    queryset=WorkoutItem.objects.select_related("exercise").order_by(
+                        "order", "id"
+                    ),
+                )
+            )
+            .get()
+        )
+        serializer = WorkoutSerializer(workout, context={"request": request})
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class WorkoutTemplateItemViewSet(viewsets.ModelViewSet):
     serializer_class = WorkoutTemplateItemSerializer
