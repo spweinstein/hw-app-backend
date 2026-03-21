@@ -12,8 +12,15 @@ from .models import (
     WeightLog,
 )
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError as DjangoValidationError
 from django.db import transaction
 from django.db.models import Q
+
+from .services.workout_scheduling import (
+    WorkoutScheduleConflictError,
+    create_workout_with_item_dicts,
+    replace_workout_items,
+)
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)  # Add a password field, make it write-only
@@ -81,6 +88,7 @@ class WorkoutItemSerializer(serializers.ModelSerializer):
             "weight_unit",
             "duration",
             "distance",
+            "distance_unit",
             "rpe",
             "notes",
         ]
@@ -94,37 +102,38 @@ class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout
         fields = "__all__"
-        read_only_fields = ["created_at", "updated_at"]
+        read_only_fields = ["user","created_at", "updated_at"]
 
     def create(self, validated_data):
         request = self.context["request"]
         items_data = validated_data.pop("items", [])
-        validated_data["user"] = request.user
+        validated_data.pop("user", None)
 
-        with transaction.atomic():
-            workout = Workout.objects.create(**validated_data)
-            if items_data:
-                WorkoutItem.objects.bulk_create(
-                    [WorkoutItem(workout=workout, **item) for item in items_data]
+        try:
+            with transaction.atomic():
+                return create_workout_with_item_dicts(
+                    user=request.user,
+                    workout_kwargs=validated_data,
+                    items_data=items_data,
                 )
-        return workout
+        except DjangoValidationError as e:
+            raise WorkoutScheduleConflictError(django_error=e) from e
 
     def update(self, instance, validated_data):
         items_data = validated_data.pop("items", None)
+        validated_data.pop("user", None)
 
-        with transaction.atomic():
-            for attr, val in validated_data.items():
-                setattr(instance, attr, val)
-            instance.save()
-
-            if items_data is not None:
-                instance.items.all().delete()
-                if items_data:
-                    WorkoutItem.objects.bulk_create(
-                        [WorkoutItem(workout=instance, **item) for item in items_data]
-                    )
+        try:
+            with transaction.atomic():
+                for attr, val in validated_data.items():
+                    setattr(instance, attr, val)
+                instance.save()
+                replace_workout_items(instance, items_data)
+        except DjangoValidationError as e:
+            raise WorkoutScheduleConflictError(django_error=e) from e
         return instance
-    
+
+
 class WorkoutTemplateItemSerializer(serializers.ModelSerializer):
     exercise_detail = ExerciseSerializer(source="exercise", read_only=True)
 

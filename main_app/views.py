@@ -20,6 +20,13 @@ from rest_framework import status
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework.exceptions import PermissionDenied
 
+from .services.workout_scheduling import (
+    WorkoutScheduleConflictError,
+    build_plan_candidate_slots,
+    regenerate_workouts_from_plan,
+    schedule_workout_from_template,
+)
+
 class ConflictError(Exception):
     def __init__(self, conflicts):
         self.conflicts = conflicts
@@ -188,50 +195,15 @@ class WorkoutTemplateViewSet(viewsets.ModelViewSet):
                 start_dt, timezone.get_current_timezone()
             )
 
-        end_dt = start_dt + timedelta(minutes=template.duration)
-
         try:
             with transaction.atomic():
-                workout = Workout.objects.create(
+                workout = schedule_workout_from_template(
                     user=request.user,
                     template=template,
-                    title=template.title,
                     start_dt=start_dt,
-                    end_dt=end_dt,
-                    status=Workout.Status.PLANNED,
-                    notes="",
                 )
-                template_items = list(
-                    template.items.select_related("exercise").order_by("order", "id")
-                )
-                if template_items:
-                    WorkoutItem.objects.bulk_create(
-                        [
-                            WorkoutItem(
-                                workout=workout,
-                                exercise=ti.exercise,
-                                order=ti.order,
-                                sets=ti.sets,
-                                reps=ti.reps,
-                                weight=ti.weight,
-                                weight_unit=ti.weight_unit,
-                                duration=ti.duration,
-                                distance=ti.distance,
-                                distance_unit=ti.distance_unit,
-                                rpe=ti.rpe,
-                                notes=ti.notes,
-                            )
-                            for ti in template_items
-                        ]
-                    )
         except DjangoValidationError as e:
-            return Response(
-                {
-                    "detail": "This workout conflicts with an existing calendar workout.",
-                    "errors": e.messages,
-                },
-                status=status.HTTP_409_CONFLICT,
-            )
+            raise WorkoutScheduleConflictError(django_error=e) from e
 
         workout = (
             Workout.objects.filter(pk=workout.pk)
@@ -326,63 +298,19 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
             raise ValidationError("Plan has no templates.")
 
         ordered_links = list(links)
-        template_count = len(ordered_links)
-
-        candidate_slots = []
-        for cycle_idx in range(cycles):
-            for pos, link in enumerate(ordered_links):
-                occurrence_index = cycle_idx * template_count + pos
-                slot_start = plan.start_dt + timedelta(days=occurrence_index * plan.interval)
-                slot_end = slot_start + timedelta(minutes=link.template.duration)
-                candidate_slots.append((slot_start, slot_end, link))
-
-        now = timezone.now()
+        candidate_slots = build_plan_candidate_slots(plan, ordered_links)
 
         try:
-            with transaction.atomic():
-                deleted_count, _ = Workout.objects.filter(
-                    user=request.user,
-                    plan=plan,
-                    start_dt__gte=now,
-                ).delete()
-
-                created_ids = []
-                for slot_start, slot_end, link in candidate_slots:
-                    workout = Workout.objects.create(
-                        user=request.user,
-                        plan=plan,
-                        template=link.template,
-                        title=link.template.title,
-                        start_dt=slot_start,
-                        end_dt=slot_end,
-                        status=Workout.Status.PLANNED,
-                    )
-                    items = [
-                        WorkoutItem(
-                            workout=workout,
-                            exercise=item.exercise,
-                            order=item.order,
-                            sets=item.sets,
-                            reps=item.reps,
-                            weight=item.weight,
-                            weight_unit=item.weight_unit,
-                            duration=item.duration,
-                            distance=item.distance,
-                            distance_unit=item.distance_unit,
-                            rpe=item.rpe,
-                            notes=item.notes,
-                        )
-                        for item in link.template.items.all()
-                    ]
-                    if items:
-                        WorkoutItem.objects.bulk_create(items)
-                    created_ids.append(workout.id)
-
-        except DjangoValidationError as e:
-            return Response(
-                {"detail": "Generated workouts conflict with existing calendar workouts.", "errors": e.messages},
-                status=status.HTTP_409_CONFLICT,
+            deleted_count, created_ids = regenerate_workouts_from_plan(
+                user=request.user,
+                plan=plan,
+                candidate_slots=candidate_slots,
             )
+        except DjangoValidationError as e:
+            raise WorkoutScheduleConflictError(
+                django_error=e,
+                detail_message="Generated workouts conflict with existing calendar workouts.",
+            ) from e
 
         return Response(
             {
@@ -399,32 +327,20 @@ class WorkoutTemplatePlanViewSet(viewsets.ModelViewSet):
     serializer_class = WorkoutTemplatePlanSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-def get_queryset(self):
-    # Prefetch template items to avoid N+1 queries
-    ordered_links = Prefetch(
-        "template_links",
-        queryset=WorkoutTemplatePlan.objects
-            .select_related("template")
-            .prefetch_related("template__items__exercise")  # Add this
-            .order_by("order", "id"),
-    )
-
-    scope = self.request.query_params.get("scope", "all")
-
-    base_qs = WorkoutPlan.objects.prefetch_related(ordered_links)
-
-    if scope == "public":
-        return base_qs.filter(is_public=True).order_by("-updated_at")
-    elif scope == "user":
-        return base_qs.filter(user=self.request.user).order_by("-updated_at")
-    else:
-        return (
-            base_qs
-            .filter(Q(user=self.request.user) | Q(is_public=True))
-            .distinct()
-            .order_by("-updated_at")
+    def get_queryset(self):
+        qs = (
+            WorkoutTemplatePlan.objects.select_related("plan", "template")
+            .order_by("plan_id", "order", "id")
         )
-        
+        scope = self.request.query_params.get("scope", "all")
+        if scope == "public":
+            return qs.filter(plan__is_public=True)
+        if scope == "user":
+            return qs.filter(plan__user=self.request.user)
+        return qs.filter(
+            Q(plan__user=self.request.user) | Q(plan__is_public=True)
+        ).distinct()
+
     def perform_create(self, serializer):
         plan = serializer.validated_data["plan"]
         template = serializer.validated_data["template"]
