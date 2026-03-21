@@ -21,6 +21,7 @@ import dj_database_url
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Adjust the port if your frontend runs on a different one
     "https://healthwealthapp.netlify.app",
+    "https://hw-fitness.netlify.app",
 ]
 
 
@@ -39,12 +40,12 @@ DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"     # NEW
 
 ALLOWED_HOSTS = os.getenv(                                      # NEW
     "DJANGO_ALLOWED_HOSTS",
-    "hw-app-backend-production.up.railway.app,localhost,127.0.0.1,healthwealthapp.netlify.app",
+    "hw-app-backend-production.up.railway.app,localhost,127.0.0.1,healthwealthapp.netlify.app,hw-fitness.netlify.app,hw-app-backend-v2-production.up.railway.app",
 ).split(",")
 
 CSRF_TRUSTED_ORIGINS = os.getenv(                               # NEW
     "CSRF_TRUSTED_ORIGINS",
-    "https://*.up.railway.app,https://healthwealthapp.netlify.app"
+    "https://healthwealthapp.netlify.app,https://hw-fitness.netlify.app,https://hw-app-backend-v2-production.up.railway.app"
 ).split(",")
 
 from datetime import timedelta
