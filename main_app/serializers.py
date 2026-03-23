@@ -275,6 +275,9 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         links_data = validated_data.pop("template_links", None)
 
+
+
+
         with transaction.atomic():
             for attr, val in validated_data.items():
                 setattr(instance, attr, val)
