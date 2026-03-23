@@ -153,6 +153,7 @@ def build_plan_slots_for_date_range(
     start_dt,
     end_date: date,
     ordered_links: list[WorkoutTemplatePlan],
+    tz=None,
 ) -> list[tuple]:
     """
     One calendar day per link step (ordered cycle). Rest placeholders advance the day
@@ -163,7 +164,8 @@ def build_plan_slots_for_date_range(
     if not ordered_links:
         return []
 
-    tz = timezone.get_current_timezone()
+    if tz is None:
+        tz = timezone.get_current_timezone()
     cursor_date = timezone.localtime(start_dt, tz).date()
     if end_date < cursor_date:
         return []

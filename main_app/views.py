@@ -14,8 +14,9 @@ from django.db import models
 from datetime import timedelta
 from django.db import transaction
 from django.db.models import Q, Prefetch
-from django.utils import timezone
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from rest_framework.decorators import action
+from django.utils import timezone
 from rest_framework import status
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework.exceptions import PermissionDenied
@@ -310,19 +311,31 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
         if end_raw is None or str(end_raw).strip() == "":
             raise ValidationError({"end_dt": "This field is required."})
 
+
+        # Get timezone from request data
+        # tz is in the format of "America/New_York"
+        # so we need to convert it to a timezone object
+        tz_name = str(request.data.get("tz") or "").strip()
+        if not tz_name:
+            raise ValidationError({"tz": "This field is required."})
+        try:
+            tz = ZoneInfo(tz_name)
+        except ZoneInfoNotFoundError:
+            raise ValidationError({"tz": "Invalid IANA timezone."})
         start_dt = parse_datetime(str(start_raw).strip())
         if start_dt is None:
             raise ValidationError({"start_dt": "Invalid datetime. Use ISO 8601 format."})
         if timezone.is_naive(start_dt):
             start_dt = timezone.make_aware(
-                start_dt, timezone.get_current_timezone()
+                start_dt, tz
             )
 
         end_date = parse_inclusive_end_date(end_raw)
         if end_date is None:
             raise ValidationError({"end_dt": "Invalid date or datetime. Use ISO 8601 format."})
 
-        tz = timezone.get_current_timezone()
+
+        
         start_date = timezone.localtime(start_dt, tz).date()
         if end_date < start_date:
             raise ValidationError(
@@ -344,7 +357,9 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
             start_dt=start_dt,
             end_date=end_date,
             ordered_links=ordered_links,
+            tz=tz,
         )
+        print(candidate_slots)
 
         try:
             created_ids = create_workouts_from_plan_slots_atomic(
@@ -355,7 +370,7 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
         except DjangoValidationError as e:
             raise WorkoutScheduleConflictError(
                 django_error=e,
-                detail_message="Generated workouts conflict with existing calendar workouts.",
+                # detail_message="Generated workouts conflict with existing calendar workouts.",
             ) from e
 
         return Response(
