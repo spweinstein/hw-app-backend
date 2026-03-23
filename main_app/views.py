@@ -22,8 +22,9 @@ from rest_framework.exceptions import PermissionDenied
 
 from .services.workout_scheduling import (
     WorkoutScheduleConflictError,
-    build_plan_candidate_slots,
-    regenerate_workouts_from_plan,
+    build_plan_slots_for_date_range,
+    create_workouts_from_plan_slots_atomic,
+    parse_inclusive_end_date,
     schedule_workout_from_template,
 )
 
@@ -173,17 +174,34 @@ class WorkoutTemplateViewSet(viewsets.ModelViewSet):
         scope = self.request.query_params.get("scope", "all")  # default: "all"
 
         if scope == "public":
-            return WorkoutTemplate.objects.filter(is_public=True).order_by("-updated_at")
+            return (
+                WorkoutTemplate.objects.select_related("user")
+                .filter(is_public=True)
+                .order_by("-updated_at")
+            )
         elif scope == "user":
-            return WorkoutTemplate.objects.filter(user=self.request.user).order_by("-updated_at")
+            return (
+                WorkoutTemplate.objects.select_related("user")
+                .filter(user=self.request.user)
+                .order_by("-updated_at")
+            )
         else:
-            return WorkoutTemplate.objects.filter(
-                (models.Q(user=self.request.user) | models.Q(is_public=True))
-            ).distinct().order_by("-updated_at")
+            return (
+                WorkoutTemplate.objects.select_related("user")
+                .filter(
+                    (models.Q(user=self.request.user) | models.Q(is_public=True))
+                )
+                .distinct()
+                .order_by("-updated_at")
+            )
 
     @action(detail=True, methods=["post"])
     def schedule(self, request, pk=None):
         template = self.get_object()
+        if template.is_rest_placeholder:
+            raise ValidationError(
+                "Rest day templates cannot be scheduled as workouts. Add them to a plan instead."
+            )
         start_raw = request.data.get("start_dt")
         if not start_raw:
             raise ValidationError({"start_dt": "This field is required."})
@@ -263,7 +281,9 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
 
         scope = self.request.query_params.get("scope", "all")
 
-        base_qs = WorkoutPlan.objects.prefetch_related(ordered_links)
+        base_qs = WorkoutPlan.objects.select_related("user").prefetch_related(
+            ordered_links
+        )
 
         if scope == "public":
             return base_qs.filter(is_public=True).order_by("-updated_at")
@@ -282,10 +302,32 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
         plan = self.get_object()
         if not plan.is_public and plan.user != request.user:
             raise PermissionDenied("You can only generate workouts from your own plans or public plans.")
-        
-        cycles = plan.cycles or 1 
-        if cycles < 1:
-            raise ValidationError("cycles must be >= 1")
+
+        start_raw = request.data.get("start_dt")
+        end_raw = request.data.get("end_dt")
+        if not start_raw:
+            raise ValidationError({"start_dt": "This field is required."})
+        if end_raw is None or str(end_raw).strip() == "":
+            raise ValidationError({"end_dt": "This field is required."})
+
+        start_dt = parse_datetime(str(start_raw).strip())
+        if start_dt is None:
+            raise ValidationError({"start_dt": "Invalid datetime. Use ISO 8601 format."})
+        if timezone.is_naive(start_dt):
+            start_dt = timezone.make_aware(
+                start_dt, timezone.get_current_timezone()
+            )
+
+        end_date = parse_inclusive_end_date(end_raw)
+        if end_date is None:
+            raise ValidationError({"end_dt": "Invalid date or datetime. Use ISO 8601 format."})
+
+        tz = timezone.get_current_timezone()
+        start_date = timezone.localtime(start_dt, tz).date()
+        if end_date < start_date:
+            raise ValidationError(
+                {"end_dt": "Must be on or after the start date (inclusive range)."}
+            )
 
         links = (
             WorkoutTemplatePlan.objects
@@ -298,10 +340,14 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
             raise ValidationError("Plan has no templates.")
 
         ordered_links = list(links)
-        candidate_slots = build_plan_candidate_slots(plan, ordered_links)
+        candidate_slots = build_plan_slots_for_date_range(
+            start_dt=start_dt,
+            end_date=end_date,
+            ordered_links=ordered_links,
+        )
 
         try:
-            deleted_count, created_ids = regenerate_workouts_from_plan(
+            created_ids = create_workouts_from_plan_slots_atomic(
                 user=request.user,
                 plan=plan,
                 candidate_slots=candidate_slots,
@@ -315,8 +361,8 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
         return Response(
             {
                 "plan_id": plan.id,
-                "cycles": cycles,
-                "deleted_future_generated_count": deleted_count,
+                "start_date": start_date.isoformat(),
+                "end_date": end_date.isoformat(),
                 "created_count": len(created_ids),
                 "workout_ids": created_ids,
             },

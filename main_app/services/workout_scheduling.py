@@ -1,25 +1,26 @@
 """
-Shared workout creation: calendar conflict rules, template item copy, plan regeneration.
+Shared workout creation: calendar conflict rules, template item copy, plan generate.
 Used by WorkoutSerializer, template schedule, and plan generate.
 """
 
 from __future__ import annotations
 
-from datetime import timedelta
+from datetime import date, datetime, timedelta
 
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.db import transaction
 from django.utils import timezone
+from django.utils.dateparse import parse_date, parse_datetime
 from rest_framework.exceptions import APIException
 
-from ..models import Workout, WorkoutItem, WorkoutPlan, WorkoutTemplate, WorkoutTemplatePlan
+from ..models import Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplatePlan
 
 
 class WorkoutScheduleConflictError(APIException):
     """Maps Workout model overlap validation to HTTP 409."""
 
     status_code = 409
-    default_detail = "This workout conflicts with an existing calendar workout."
+    default_detail = "This workout conflicts with an existing workout on your calendar."
     default_code = "schedule_conflict"
 
     def __init__(
@@ -128,52 +129,103 @@ def schedule_workout_from_template(
     )
 
 
-def build_plan_candidate_slots(plan: WorkoutPlan, ordered_links: list[WorkoutTemplatePlan]):
-    """(start, end, link) tuples matching existing generate() semantics."""
-    cycles = plan.cycles or 1
-    template_count = len(ordered_links)
-    candidate_slots = []
-    for cycle_idx in range(cycles):
-        for pos, link in enumerate(ordered_links):
-            occurrence_index = cycle_idx * template_count + pos
-            slot_start = plan.start_dt + timedelta(
-                days=occurrence_index * plan.interval
-            )
-            slot_end = slot_start + timedelta(minutes=link.template.duration)
-            candidate_slots.append((slot_start, slot_end, link))
+def parse_inclusive_end_date(raw) -> date | None:
+    """
+    Parse end of generate range as a calendar date (inclusive).
+    Accepts ISO date (YYYY-MM-DD) or datetime string.
+    """
+    if raw is None:
+        return None
+    s = str(raw).strip()
+    if not s:
+        return None
+    dt = parse_datetime(s)
+    if dt is not None:
+        if timezone.is_naive(dt):
+            dt = timezone.make_aware(dt, timezone.get_current_timezone())
+        return timezone.localtime(dt).date()
+    d = parse_date(s)
+    return d
+
+
+def build_plan_slots_for_date_range(
+    *,
+    start_dt,
+    end_date: date,
+    ordered_links: list[WorkoutTemplatePlan],
+) -> list[tuple]:
+    """
+    One calendar day per link step (ordered cycle). Rest placeholders advance the day
+    without a workout. Workouts use WorkoutTemplatePlan.time on that day.
+
+    Returns list of (slot_start, slot_end, link) for non-rest templates only.
+    """
+    if not ordered_links:
+        return []
+
+    tz = timezone.get_current_timezone()
+    cursor_date = timezone.localtime(start_dt, tz).date()
+    if end_date < cursor_date:
+        return []
+
+    candidate_slots: list[tuple] = []
+    i = 0
+    n = len(ordered_links)
+
+    while cursor_date <= end_date:
+        link = ordered_links[i % n]
+        if link.template.is_rest_placeholder:
+            cursor_date = cursor_date + timedelta(days=1)
+            i += 1
+            continue
+
+        slot_start = timezone.make_aware(
+            datetime.combine(cursor_date, link.time),
+            tz,
+        )
+        slot_end = slot_start + timedelta(minutes=link.template.duration)
+        candidate_slots.append((slot_start, slot_end, link))
+        cursor_date = cursor_date + timedelta(days=1)
+        i += 1
+
     return candidate_slots
 
 
-def regenerate_workouts_from_plan(
+def create_workouts_from_plan_slots(
     *,
     user,
-    plan: WorkoutPlan,
+    plan,
     candidate_slots: list[tuple],
-) -> tuple[int, list[int]]:
+) -> list[int]:
     """
-    Delete this user's future workouts tied to the plan, then create slots.
+    Create workouts from plan slots (no deletes).
     candidate_slots: list of (slot_start, slot_end, link: WorkoutTemplatePlan)
-    Returns (deleted_count, created_workout_ids).
     """
-    now = timezone.now()
-    with transaction.atomic():
-        deleted_count, _ = Workout.objects.filter(
+    created_ids: list[int] = []
+    for slot_start, slot_end, link in candidate_slots:
+        workout = create_workout_with_template_items(
             user=user,
+            template=link.template,
+            start_dt=slot_start,
+            end_dt=slot_end,
             plan=plan,
-            start_dt__gte=now,
-        ).delete()
-        created_ids = []
-        for slot_start, slot_end, link in candidate_slots:
-            workout = create_workout_with_template_items(
-                user=user,
-                template=link.template,
-                start_dt=slot_start,
-                end_dt=slot_end,
-                plan=plan,
-                title=link.template.title,
-            )
-            created_ids.append(workout.id)
-    return deleted_count, created_ids
+            title=link.template.title,
+        )
+        created_ids.append(workout.id)
+    return created_ids
+
+
+def create_workouts_from_plan_slots_atomic(
+    *,
+    user,
+    plan,
+    candidate_slots: list[tuple],
+) -> list[int]:
+    """Same as create_workouts_from_plan_slots inside a single atomic block."""
+    with transaction.atomic():
+        return create_workouts_from_plan_slots(
+            user=user, plan=plan, candidate_slots=candidate_slots
+        )
 
 
 def replace_workout_items(workout: Workout, items_data: list[dict] | None) -> None:

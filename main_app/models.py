@@ -87,6 +87,10 @@ class WorkoutTemplate(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
     duration = models.PositiveIntegerField()
+    is_rest_placeholder = models.BooleanField(
+        default=False,
+        help_text="If true, plan generate treats this as a rest day (no workout). Cannot be scheduled from the template schedule action.",
+    )
 
     class Meta:
         unique_together = ("user", "title")
@@ -131,17 +135,15 @@ class WorkoutTemplateItem(models.Model):
     
 class WorkoutPlan(models.Model):
     """
-    Recurrence + program container. Generates Workout instances (calendar events).
-    Attaches to templates via the through table WorkoutTemplatePlan.
+    Program container: ordered templates (and rest placeholders) via WorkoutTemplatePlan.
+    Generate materializes calendar workouts for a caller-chosen date range (POST generate).
     """
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="workout_plans"
     )
     title = models.CharField(max_length=140)
-    start_dt = models.DateTimeField()
-    interval = models.PositiveIntegerField(default=1)
-    cycles = models.PositiveIntegerField(default=1)
+    description = models.TextField(blank=True)
     is_public = models.BooleanField(default=False)
 
     # M2M to templates (composition)

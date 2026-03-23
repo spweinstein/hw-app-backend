@@ -47,7 +47,8 @@ class WorkoutTemplateItemInline(admin.TabularInline):
 
 class WorkoutTemplateAdmin(admin.ModelAdmin):
     inlines = [WorkoutTemplateItemInline]
-    actions=[create_workout_from_template]
+    actions = [create_workout_from_template]
+    list_display = ("title", "user", "is_public", "is_rest_placeholder", "duration")
 
 class WorkoutTemplatePlanInline(admin.TabularInline):
     model = WorkoutTemplatePlan

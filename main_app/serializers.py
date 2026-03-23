@@ -107,33 +107,32 @@ class WorkoutSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         request = self.context["request"]
         items_data = validated_data.pop("items", [])
-        validated_data.pop("user", None)
+        validated_data["user"] = request.user
 
-        try:
-            with transaction.atomic():
-                return create_workout_with_item_dicts(
-                    user=request.user,
-                    workout_kwargs=validated_data,
-                    items_data=items_data,
+        with transaction.atomic():
+            workout = Workout.objects.create(**validated_data)
+            if items_data:
+                WorkoutItem.objects.bulk_create(
+                    [WorkoutItem(workout=workout, **item) for item in items_data]
                 )
-        except DjangoValidationError as e:
-            raise WorkoutScheduleConflictError(django_error=e) from e
+        return workout
 
     def update(self, instance, validated_data):
         items_data = validated_data.pop("items", None)
-        validated_data.pop("user", None)
 
-        try:
-            with transaction.atomic():
-                for attr, val in validated_data.items():
-                    setattr(instance, attr, val)
-                instance.save()
-                replace_workout_items(instance, items_data)
-        except DjangoValidationError as e:
-            raise WorkoutScheduleConflictError(django_error=e) from e
+        with transaction.atomic():
+            for attr, val in validated_data.items():
+                setattr(instance, attr, val)
+            instance.save()
+
+            if items_data is not None:
+                instance.items.all().delete()
+                if items_data:
+                    WorkoutItem.objects.bulk_create(
+                        [WorkoutItem(workout=instance, **item) for item in items_data]
+                    )
         return instance
-
-
+    
 class WorkoutTemplateItemSerializer(serializers.ModelSerializer):
     exercise_detail = ExerciseSerializer(source="exercise", read_only=True)
 
@@ -145,6 +144,9 @@ class WorkoutTemplateItemSerializer(serializers.ModelSerializer):
 
 class WorkoutTemplateSerializer(serializers.ModelSerializer):
     items = WorkoutTemplateItemSerializer(many=True, required=False)
+    username = serializers.CharField(
+        source="user.username", read_only=True
+    )
     # If you want an easy "copy" action later, keeping source_template is helpful.
     source_template = serializers.PrimaryKeyRelatedField(
         queryset=WorkoutTemplate.objects.all(),
@@ -162,6 +164,11 @@ class WorkoutTemplateSerializer(serializers.ModelSerializer):
         items_data = validated_data.pop("items", [])
         validated_data["user"] = request.user
 
+        if validated_data.get("is_rest_placeholder") and items_data:
+            raise serializers.ValidationError(
+                {"items": "Rest placeholder templates cannot include exercises."}
+            )
+
         with transaction.atomic():
             template = WorkoutTemplate.objects.create(**validated_data)
             if items_data:
@@ -178,6 +185,14 @@ class WorkoutTemplateSerializer(serializers.ModelSerializer):
         # - If `items` is provided, replace all items (delete + recreate)
         items_data = validated_data.pop("items", None)
 
+        will_be_rest = validated_data.get(
+            "is_rest_placeholder", instance.is_rest_placeholder
+        )
+        if will_be_rest and items_data:
+            raise serializers.ValidationError(
+                {"items": "Rest placeholder templates cannot include exercises."}
+            )
+
         with transaction.atomic():
             for attr, val in validated_data.items():
                 setattr(instance, attr, val)
@@ -192,6 +207,8 @@ class WorkoutTemplateSerializer(serializers.ModelSerializer):
                             for item in items_data
                         ]
                     )
+            elif instance.is_rest_placeholder:
+                instance.items.all().delete()
         return instance
 
 class WorkoutTemplatePlanSerializer(serializers.ModelSerializer):
@@ -203,6 +220,9 @@ class WorkoutTemplatePlanSerializer(serializers.ModelSerializer):
         read_only_fields = ["plan"]
 
 class WorkoutPlanSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(
+        source="user.username", read_only=True
+    )
     # Write: send list of through-table objects
     template_links = WorkoutTemplatePlanSerializer(
         many=True, required=False
@@ -274,9 +294,6 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         links_data = validated_data.pop("template_links", None)
-
-
-
 
         with transaction.atomic():
             for attr, val in validated_data.items():

@@ -5,9 +5,7 @@
     "fields": {
       "user": 1,
       "title": "Push Pull Legs Routine",
-      "start_dt": "2026-03-09T00:00:00Z",
-      "interval": 1,
-      "cycles": 4,
+      "description": "",
       "is_public": true,
       "created_at": "2026-03-01T00:00:00Z",
       "updated_at": "2026-03-01T00:00:00Z"
@@ -19,9 +17,7 @@
     "fields": {
       "user": 1,
       "title": "Upper Lower Cardio/Core Routine",
-      "start_dt": "2026-03-10T00:00:00Z",
-      "interval": 1,
-      "cycles": 4,
+      "description": "",
       "is_public": true,
       "created_at": "2026-03-01T00:00:00Z",
       "updated_at": "2026-03-01T00:00:00Z"
@@ -33,9 +29,7 @@
     "fields": {
       "user": 1,
       "title": "Push Pull Lower Upper Lower Routine",
-      "start_dt": "2026-03-09T00:00:00Z",
-      "interval": 1,
-      "cycles": 4,
+      "description": "",
       "is_public": true,
       "created_at": "2026-03-01T00:00:00Z",
       "updated_at": "2026-03-01T00:00:00Z"
@@ -47,9 +41,7 @@
     "fields": {
       "user": 1,
       "title": "Full body upper/ full body lower",
-      "start_dt": "2026-03-09T00:00:00Z",
-      "interval": 1,
-      "cycles": 4,
+      "description": "",
       "is_public": true,
       "created_at": "2026-03-01T00:00:00Z",
       "updated_at": "2026-03-01T00:00:00Z"
