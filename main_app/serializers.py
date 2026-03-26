@@ -49,6 +49,7 @@ class WeightLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeightLog
         fields = ["id", "user", "weight", "date"]
+        read_only_fields = ["user"]
 
 
 class MuscleGroupSerializer(serializers.ModelSerializer):
@@ -185,10 +186,10 @@ class WorkoutTemplateSerializer(serializers.ModelSerializer):
         # - If `items` is provided, replace all items (delete + recreate)
         items_data = validated_data.pop("items", None)
 
-        will_be_rest = validated_data.get(
+        is_rest_placeholder = validated_data.get(
             "is_rest_placeholder", instance.is_rest_placeholder
         )
-        if will_be_rest and items_data:
+        if is_rest_placeholder and items_data:
             raise serializers.ValidationError(
                 {"items": "Rest placeholder templates cannot include exercises."}
             )
