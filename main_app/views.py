@@ -2,8 +2,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, generics, status
 from rest_framework.exceptions import ValidationError
+from rest_framework.pagination import PageNumberPagination
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import ExerciseSerializer, MuscleGroupSerializer, UserSerializer, WorkoutSerializer, WorkoutItemSerializer, WorkoutTemplateSerializer, WorkoutTemplateItemSerializer, WorkoutPlanSerializer, WorkoutTemplatePlanSerializer, ProfileSerializer, WeightLogSerializer
+from .serializers import ExerciseSerializer, MuscleGroupSerializer, UserSerializer, WorkoutCalendarSerializer, WorkoutSerializer, WorkoutItemSerializer, WorkoutTemplateSerializer, WorkoutTemplateItemSerializer, WorkoutPlanSerializer, WorkoutTemplatePlanSerializer, ProfileSerializer, WeightLogSerializer
 from .models import Exercise, MuscleGroup, Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplateItem, WorkoutPlan, WorkoutTemplatePlan, Profile, WeightLog
 
 from django.contrib.auth.models import User
@@ -34,20 +35,49 @@ class ConflictError(Exception):
         self.conflicts = conflicts
         super().__init__("Workout schedule conflicts detected.")
 
+
+class PublicCatalogPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = "page_size"
+    max_page_size = 100
+
+
+class PublicCatalogPaginationMixin:
+    pagination_class = PublicCatalogPagination
+
+    def paginate_queryset(self, queryset):
+        if self.request.query_params.get("scope", "all") != "public":
+            return None
+        return super().paginate_queryset(queryset)
+
+    def apply_catalog_search(self, queryset):
+        search = self.request.query_params.get("search", "").strip()
+        if not search:
+            return queryset
+
+        search_filter = (
+            Q(title__icontains=search)
+            | Q(description__icontains=search)
+            | Q(user__username__icontains=search)
+        )
+        return queryset.filter(search_filter)
+
 # User Registration
 class CreateUserView(generics.CreateAPIView):
   queryset = User.objects.all()
   serializer_class = UserSerializer
+  permission_classes = [permissions.AllowAny]
 
   def create(self, request, *args, **kwargs):
-    response = super().create(request, *args, **kwargs)
-    user = User.objects.get(username=response.data['username'])
+    serializer = self.get_serializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    user = serializer.save()
     refresh = RefreshToken.for_user(user)
     return Response({
       'refresh': str(refresh),
       'access': str(refresh.access_token),
-      'user': response.data
-    })
+      'user': UserSerializer(user).data
+    }, status=status.HTTP_200_OK)
 
 # User Login
 class LoginView(APIView):
@@ -71,8 +101,8 @@ class VerifyUserView(APIView):
   permission_classes = [permissions.IsAuthenticated]
 
   def get(self, request):
-    user = User.objects.get(username=request.user)  # Fetch user profile
-    refresh = RefreshToken.for_user(request.user)  # Generate new refresh token
+    user = request.user
+    refresh = RefreshToken.for_user(user)  # Generate new refresh token
     return Response({
       'refresh': str(refresh),
       'access': str(refresh.access_token),
@@ -123,13 +153,22 @@ class MuscleGroupViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 class ExerciseViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Exercise.objects.all().order_by("name")
+    queryset = Exercise.objects.prefetch_related("muscle_groups").order_by("name")
     serializer_class = ExerciseSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 class WorkoutViewSet(viewsets.ModelViewSet):
     serializer_class = WorkoutSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action == "list" and self._is_calendar_range_request():
+            return WorkoutCalendarSerializer
+        return super().get_serializer_class()
+
+    def _is_calendar_range_request(self):
+        params = self.request.query_params
+        return bool(params.get("start")) and bool(params.get("end"))
 
     def get_queryset(self):
         qs = Workout.objects.filter(user=self.request.user).order_by("start_dt", "id")
@@ -152,7 +191,12 @@ class WorkoutItemViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return WorkoutItem.objects.filter(workout__user=self.request.user).order_by("order", "id")
+        return (
+            WorkoutItem.objects.filter(workout__user=self.request.user)
+            .select_related("exercise")
+            .prefetch_related("exercise__muscle_groups")
+            .order_by("order", "id")
+        )
 
     def perform_create(self, serializer):
         workout = serializer.validated_data["workout"]
@@ -160,7 +204,7 @@ class WorkoutItemViewSet(viewsets.ModelViewSet):
             raise ValidationError("You do not own this workout.")
         serializer.save()
 
-class WorkoutTemplateViewSet(viewsets.ModelViewSet):
+class WorkoutTemplateViewSet(PublicCatalogPaginationMixin, viewsets.ModelViewSet):
     serializer_class = WorkoutTemplateSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnlyPublic]
 
@@ -172,24 +216,28 @@ class WorkoutTemplateViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
     def get_queryset(self):
+        template_items = Prefetch(
+            "items",
+            queryset=WorkoutTemplateItem.objects.select_related("exercise")
+            .prefetch_related("exercise__muscle_groups")
+            .order_by("order", "id"),
+        )
         scope = self.request.query_params.get("scope", "all")  # default: "all"
+        base_qs = WorkoutTemplate.objects.select_related("user").prefetch_related(
+            template_items
+        )
+        base_qs = self.apply_catalog_search(base_qs)
 
         if scope == "public":
-            return (
-                WorkoutTemplate.objects.select_related("user")
-                .filter(is_public=True)
-                .order_by("-updated_at")
-            )
+            return base_qs.filter(
+                is_public=True,
+                is_rest_placeholder=False,
+            ).order_by("-updated_at")
         elif scope == "user":
-            return (
-                WorkoutTemplate.objects.select_related("user")
-                .filter(user=self.request.user)
-                .order_by("-updated_at")
-            )
+            return base_qs.filter(user=self.request.user).order_by("-updated_at")
         else:
             return (
-                WorkoutTemplate.objects.select_related("user")
-                .filter(
+                base_qs.filter(
                     (models.Q(user=self.request.user) | models.Q(is_public=True))
                 )
                 .distinct()
@@ -255,7 +303,7 @@ class WorkoutTemplateItemViewSet(viewsets.ModelViewSet):
         serializer.save()
 
 
-class WorkoutPlanViewSet(viewsets.ModelViewSet):
+class WorkoutPlanViewSet(PublicCatalogPaginationMixin, viewsets.ModelViewSet):
     serializer_class = WorkoutPlanSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnlyPublic]
 
@@ -273,10 +321,17 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # CRITICAL: Prefetch with explicit ordering to ensure correct order
+        template_items = Prefetch(
+            "template__items",
+            queryset=WorkoutTemplateItem.objects.select_related("exercise")
+            .prefetch_related("exercise__muscle_groups")
+            .order_by("order", "id"),
+        )
         ordered_links = Prefetch(
             "template_links",
             queryset=WorkoutTemplatePlan.objects
-                .select_related("template")
+                .select_related("template", "template__user")
+                .prefetch_related(template_items)
                 .order_by("order", "id"),
         )
 
@@ -285,6 +340,7 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
         base_qs = WorkoutPlan.objects.select_related("user").prefetch_related(
             ordered_links
         )
+        base_qs = self.apply_catalog_search(base_qs)
 
         if scope == "public":
             return base_qs.filter(is_public=True).order_by("-updated_at")
@@ -330,7 +386,7 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
                 start_dt, tz
             )
 
-        end_date = parse_inclusive_end_date(end_raw)
+        end_date = parse_inclusive_end_date(end_raw, tz=tz)
         if end_date is None:
             raise ValidationError({"end_dt": "Invalid date or datetime. Use ISO 8601 format."})
 
@@ -345,8 +401,15 @@ class WorkoutPlanViewSet(viewsets.ModelViewSet):
         links = (
             WorkoutTemplatePlan.objects
             .filter(plan=plan)
-            .select_related("template")
-            .prefetch_related("template__items__exercise")
+            .select_related("template", "template__user")
+            .prefetch_related(
+                Prefetch(
+                    "template__items",
+                    queryset=WorkoutTemplateItem.objects.select_related("exercise")
+                    .prefetch_related("exercise__muscle_groups")
+                    .order_by("order", "id"),
+                )
+            )
             .order_by("order", "id")
         )
         if not links.exists():

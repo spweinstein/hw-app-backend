@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.conf import settings
 from django.db.models import Q
 from django.core.exceptions import ValidationError
@@ -228,7 +228,13 @@ class Workout(models.Model):
 
     def __str__(self) -> str:
         return f"{self.title} @ {self.start_dt}"
-    
+
+    def _lock_owner_row(self) -> None:
+        """Serialize workout writes per user while overlap validation runs."""
+        if self.user_id is None:
+            return
+        User.objects.select_for_update().filter(pk=self.user_id).exists()
+
     def clean(self):
         if self.start_dt and self.end_dt:
             conflicts = Workout.objects.filter(
@@ -243,8 +249,10 @@ class Workout(models.Model):
                 )
 
     def save(self, *args, **kwargs):
-        self.full_clean()
-        super().save(*args, **kwargs)
+        with transaction.atomic():
+            self._lock_owner_row()
+            self.full_clean()
+            super().save(*args, **kwargs)
 
 
 class WorkoutItem(models.Model):

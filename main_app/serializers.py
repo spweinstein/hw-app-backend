@@ -16,12 +16,6 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 from django.db import transaction
 from django.db.models import Q
 
-from .services.workout_scheduling import (
-    WorkoutScheduleConflictError,
-    create_workout_with_item_dicts,
-    replace_workout_items,
-)
-
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)  # Add a password field, make it write-only
     email = serializers.EmailField(required=False, allow_blank=True)  # Make email optional
@@ -133,6 +127,14 @@ class WorkoutSerializer(serializers.ModelSerializer):
                         [WorkoutItem(workout=instance, **item) for item in items_data]
                     )
         return instance
+
+
+class WorkoutCalendarSerializer(serializers.ModelSerializer):
+    """Slim workout shape for calendar list responses."""
+
+    class Meta:
+        model = Workout
+        fields = ["id", "title", "start_dt", "end_dt", "status", "notes"]
     
 class WorkoutTemplateItemSerializer(serializers.ModelSerializer):
     exercise_detail = ExerciseSerializer(source="exercise", read_only=True)
@@ -234,67 +236,71 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ["created_at", "updated_at", "user"]
 
-    # In serializers.py, update WorkoutPlanSerializer.create method:
+
+    def _validate_and_resolve_template_links(self, links_data, user):
+        """Validate access and resolve template objects in link dicts.
+
+        Returns None when links_data is None (field omitted), an empty list
+        when links_data is empty, or a cleaned list with 'id' stripped and
+        template foreign keys replaced with resolved model instances.
+        Raises ValidationError if any template is inaccessible to the user.
+        """
+        if links_data is None:
+            return None
+        if not links_data:
+            return []
+
+        template_ids = []
+        for link in links_data:
+            template = link.get("template")
+            if template is not None:
+                template_ids.append(template.id if hasattr(template, "id") else template)
+
+        valid_templates = WorkoutTemplate.objects.filter(
+            Q(id__in=template_ids) & (Q(user=user) | Q(is_public=True))
+        )
+        template_map = {t.id: t for t in valid_templates}
+
+        invalid_ids = set(template_ids) - set(template_map.keys())
+        if invalid_ids:
+            raise serializers.ValidationError(
+                {"template_links": f"You don't have access to templates: {sorted(invalid_ids)}"}
+            )
+
+        cleaned_links = []
+        for link in links_data:
+            cleaned = {k: v for k, v in link.items() if k != "id"}
+            template = cleaned.get("template")
+            if template is not None:
+                template_id = template.id if hasattr(template, "id") else template
+                cleaned["template"] = template_map[template_id]
+            cleaned_links.append(cleaned)
+
+        return cleaned_links
+
     def create(self, validated_data):
         request = self.context["request"]
         links_data = validated_data.pop("template_links", [])
         validated_data["user"] = request.user
 
-        # Validate template access and get template instances
-        if links_data:
-            # Extract template IDs (handle both int and object)
-            template_ids = []
-            for link in links_data:
-                template = link.get("template")
-                if template:
-                    # If it's already an object, get the ID; otherwise use as-is
-                    template_id = template.id if hasattr(template, 'id') else template
-                    template_ids.append(template_id)
-            
-            if template_ids:
-                # Fetch valid template instances
-                valid_templates = WorkoutTemplate.objects.filter(
-                    Q(id__in=template_ids) & 
-                    (Q(user=request.user) | Q(is_public=True))
-                )
-                
-                # Create a mapping of ID to instance for quick lookup
-                template_map = {t.id: t for t in valid_templates}
-                
-                invalid_ids = set(template_ids) - set(template_map.keys())
-                if invalid_ids:
-                    raise serializers.ValidationError(
-                        f"You don't have access to templates: {list(invalid_ids)}"
-                    )
-                
-                # Replace template IDs with template instances
-                for link in links_data:
-                    template_id = link.get("template")
-                    if template_id:
-                        template_id = template_id.id if hasattr(template_id, 'id') else template_id
-                        link["template"] = template_map[template_id]
+        # Returns cleaned links: id stripped, template objects resolved and access-checked.
+        clean_links = self._validate_and_resolve_template_links(links_data, request.user)
 
         with transaction.atomic():
             plan = WorkoutPlan.objects.create(**validated_data)
-            if links_data:
-                # Remove id field if it exists (for new links)
-                clean_links = []
-                for link in links_data:
-                    clean_link = {k: v for k, v in link.items() if k != 'id' or (k == 'id' and v is not None)}
-                    if 'id' in clean_link and clean_link['id'] is None:
-                        del clean_link['id']
-                    clean_links.append(clean_link)
-                
+            if clean_links:
                 WorkoutTemplatePlan.objects.bulk_create(
-                    [
-                        WorkoutTemplatePlan(plan=plan, **link)
-                        for link in clean_links
-                    ]
+                    [WorkoutTemplatePlan(plan=plan, **link) for link in clean_links]
                 )
         return plan
 
     def update(self, instance, validated_data):
         links_data = validated_data.pop("template_links", None)
+        request = self.context["request"]
+
+        # Returns cleaned links: id stripped, template objects resolved and access-checked.
+        # None means the field was omitted (no-op); [] means explicitly cleared.
+        clean_links = self._validate_and_resolve_template_links(links_data, request.user)
 
         with transaction.atomic():
             for attr, val in validated_data.items():
@@ -304,12 +310,9 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
             if links_data is not None:
                 # Replace links if provided
                 WorkoutTemplatePlan.objects.filter(plan=instance).delete()
-                if links_data:
+                if clean_links:
                     WorkoutTemplatePlan.objects.bulk_create(
-                        [
-                            WorkoutTemplatePlan(plan=instance, **link)
-                            for link in links_data
-                        ]
+                        [WorkoutTemplatePlan(plan=instance, **link) for link in clean_links]
                     )
             
             # Refresh the instance from database to get updated template_links
@@ -321,21 +324,10 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
         return instance
 
     def to_representation(self, instance):
-        # Override to ensure template_links are properly ordered
-        try:
-            representation = super().to_representation(instance)
-            if 'template_links' in representation and representation['template_links']:
-                # Ensure they're sorted by order, then id
-                representation['template_links'].sort(
-                    key=lambda x: (x.get('order', 0), x.get('id', 0))
-                )
-            return representation
-        except Exception as e:
-            # Log the error but don't crash
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.error(f"Error serializing WorkoutPlan {instance.id}: {e}")
-            # Return basic representation without template_links
-            representation = super().to_representation(instance)
-            representation['template_links'] = []
-            return representation
+        """Sort template_links by order then id for stable client-side rendering."""
+        representation = super().to_representation(instance)
+        if representation.get('template_links'):
+            representation['template_links'].sort(
+                key=lambda x: (x.get('order', 0), x.get('id', 0))
+            )
+        return representation

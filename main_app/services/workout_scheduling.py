@@ -13,7 +13,13 @@ from django.utils import timezone
 from django.utils.dateparse import parse_date, parse_datetime
 from rest_framework.exceptions import APIException
 
-from ..models import Workout, WorkoutItem, WorkoutTemplate, WorkoutTemplatePlan
+from ..models import (
+    Workout,
+    WorkoutItem,
+    WorkoutTemplate,
+    WorkoutTemplateItem,
+    WorkoutTemplatePlan,
+)
 
 
 class WorkoutScheduleConflictError(APIException):
@@ -37,10 +43,39 @@ class WorkoutScheduleConflictError(APIException):
         super().__init__(detail=detail)
 
 
-def copy_template_items_to_workout(workout: Workout, template: WorkoutTemplate) -> None:
-    template_items = list(
-        template.items.select_related("exercise").order_by("order", "id")
-    )
+def _get_template_items(
+    template: WorkoutTemplate,
+    *,
+    template_items_cache: dict[int, list[WorkoutTemplateItem]] | None = None,
+) -> list[WorkoutTemplateItem]:
+    """Return ordered template items, reusing an in-memory cache when available."""
+    if template_items_cache is not None:
+        cached_items = template_items_cache.get(template.pk)
+        if cached_items is not None:
+            return cached_items
+
+    prefetched_items = getattr(template, "_prefetched_objects_cache", {}).get("items")
+    if prefetched_items is not None:
+        template_items = list(prefetched_items)
+    else:
+        template_items = list(
+            template.items.select_related("exercise").order_by("order", "id")
+        )
+
+    if template_items_cache is not None:
+        template_items_cache[template.pk] = template_items
+
+    return template_items
+
+
+def copy_template_items_to_workout(
+    workout: Workout,
+    template: WorkoutTemplate,
+    *,
+    template_items: list[WorkoutTemplateItem] | None = None,
+) -> None:
+    if template_items is None:
+        template_items = _get_template_items(template)
     if not template_items:
         return
     WorkoutItem.objects.bulk_create(
@@ -74,6 +109,7 @@ def create_workout_with_template_items(
     title: str | None = None,
     notes: str = "",
     status: str = Workout.Status.PLANNED,
+    template_items: list[WorkoutTemplateItem] | None = None,
 ) -> Workout:
     """
     Create a workout and copy exercises from the template.
@@ -89,7 +125,11 @@ def create_workout_with_template_items(
         status=status,
         notes=notes or "",
     )
-    copy_template_items_to_workout(workout, template)
+    copy_template_items_to_workout(
+        workout,
+        template,
+        template_items=template_items,
+    )
     return workout
 
 
@@ -129,7 +169,7 @@ def schedule_workout_from_template(
     )
 
 
-def parse_inclusive_end_date(raw) -> date | None:
+def parse_inclusive_end_date(raw, tz=None) -> date | None:
     """
     Parse end of generate range as a calendar date (inclusive).
     Accepts ISO date (YYYY-MM-DD) or datetime string.
@@ -139,11 +179,13 @@ def parse_inclusive_end_date(raw) -> date | None:
     s = str(raw).strip()
     if not s:
         return None
+    if tz is None:
+        tz = timezone.get_current_timezone()
     dt = parse_datetime(s)
     if dt is not None:
         if timezone.is_naive(dt):
-            dt = timezone.make_aware(dt, timezone.get_current_timezone())
-        return timezone.localtime(dt).date()
+            dt = timezone.make_aware(dt, tz)
+        return timezone.localtime(dt, tz).date()
     d = parse_date(s)
     return d
 
@@ -204,7 +246,12 @@ def create_workouts_from_plan_slots(
     candidate_slots: list of (slot_start, slot_end, link: WorkoutTemplatePlan)
     """
     created_ids: list[int] = []
+    template_items_cache: dict[int, list[WorkoutTemplateItem]] = {}
     for slot_start, slot_end, link in candidate_slots:
+        template_items = _get_template_items(
+            link.template,
+            template_items_cache=template_items_cache,
+        )
         workout = create_workout_with_template_items(
             user=user,
             template=link.template,
@@ -212,6 +259,7 @@ def create_workouts_from_plan_slots(
             end_dt=slot_end,
             plan=plan,
             title=link.template.title,
+            template_items=template_items,
         )
         created_ids.append(workout.id)
     return created_ids

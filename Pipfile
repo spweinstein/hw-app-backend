@@ -15,6 +15,10 @@ dj-database-url = "*"
 python-dotenv = "*"
 
 [dev-packages]
+ruff = "*"
+
+[scripts]
+lint = "ruff check ."
 
 [requires]
 python_version = "3.14"

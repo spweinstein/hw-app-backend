@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 load_dotenv(override=True)
 
 import dj_database_url  
+from django.core.exceptions import ImproperlyConfigured
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -34,9 +35,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-a^hyu87=6_@rw-mwu&@6bburo6ib!7=5sj03o-!&9##j9kq0%m'
-# NEW
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "dev-insecure-key")  # NEW
-DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"     # NEW
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
+
+SECRET_KEY_ENV = os.getenv("DJANGO_SECRET_KEY")
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DEBUG and not SECRET_KEY_ENV:
+    raise ImproperlyConfigured("DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is false.")
+
+if not DEBUG and not DATABASE_URL:
+    raise ImproperlyConfigured("DATABASE_URL must be set when DJANGO_DEBUG is false.")
+
+SECRET_KEY = SECRET_KEY_ENV or "dev-insecure-key"
 
 ALLOWED_HOSTS = os.getenv(                                      # NEW
     "DJANGO_ALLOWED_HOSTS",
@@ -54,7 +64,7 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=3),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=3),
     'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
+    'BLACKLIST_AFTER_ROTATION': False,
     'UPDATE_LAST_LOGIN': False,
 
     'ALGORITHM': 'HS256',
@@ -86,7 +96,10 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
 
 MIDDLEWARE = [
@@ -124,11 +137,9 @@ WSGI_APPLICATION = 'hw_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-
 DATABASES = {
     "default": dj_database_url.parse(
-        DATABASE_URL,
+        DATABASE_URL or f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
         ssl_require=False,  # set True if your host requires SSL (e.g. many cloud DBs)
     )
@@ -176,5 +187,3 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
-
-STATIC_URL = 'static/'

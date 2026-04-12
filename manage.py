@@ -6,7 +6,13 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hw_app.settings')
+    if len(sys.argv) > 1 and sys.argv[1] == "test" and not any(
+        arg == "--settings" or arg.startswith("--settings=")
+        for arg in sys.argv[2:]
+    ):
+        os.environ["DJANGO_SETTINGS_MODULE"] = "hw_app.settings_test"
+    else:
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hw_app.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
